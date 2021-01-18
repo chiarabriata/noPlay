@@ -1,4 +1,4 @@
-package org.noplay.gestionale.entities;
+package com.noplay.gestionale.entities;
 
 import java.util.List;
 
