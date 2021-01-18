@@ -8,12 +8,12 @@
 		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.noplay</groupId>
+	<groupId>org.noplay</groupId>
 	<artifactId>gestionale</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>gestionale</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Gestionale azienda noPlay</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -29,6 +29,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
