@@ -20,6 +20,8 @@ public class DipendenteController {
 
 	// Altro cambiamento ma da Eclipse!!
 	// Abbiamo cambiato tutto ciao
+
+	//MODIFICA PER CAPIRE COME FUNZIONA GIT CON ECLIPSE
 	@Autowired
 	private CrudDipendente daodipendente;
 	
