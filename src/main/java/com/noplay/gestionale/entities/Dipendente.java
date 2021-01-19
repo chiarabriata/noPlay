@@ -14,7 +14,7 @@ public class Dipendente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nome;
-	private String  cognome;
+	private String cognome;
 	private String ddn;
 	private double stipendio;
 	private String dataassunzione;

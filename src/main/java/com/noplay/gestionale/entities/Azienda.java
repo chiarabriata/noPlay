@@ -1,7 +1,5 @@
 package com.noplay.gestionale.entities;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,25 +8,36 @@ import javax.persistence.Id;
 @Entity
 public class Azienda {
 	
+	// Ennesimo cambiamneto
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String ragionesociale;
 	private String partitaiva;
 	private String indirizzo;
 	private String email;
-	private int ntelefono;
-	private List<Dipendente> dipendenti;
+	private String ntelefono;
 	
 	
-	public Azienda(String ragionesociale, String partitaiva, String indirizzo, String email, int ntelefono,
-			List<Dipendente> dipendenti) {
+	public Azienda(Long id, String ragionesociale, String partitaiva, String indirizzo, String email, String ntelefono) {
 		super();
+		this.id = id;
 		this.ragionesociale = ragionesociale;
 		this.partitaiva = partitaiva;
 		this.indirizzo = indirizzo;
 		this.email = email;
 		this.ntelefono = ntelefono;
-		this.dipendenti = dipendenti;
+	}
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
@@ -77,24 +86,16 @@ public class Azienda {
 	}
 
 
-	public int getNtelefono() {
+	public String getNtelefono() {
 		return ntelefono;
 	}
 
 
-	public void setNtelefono(int ntelefono) {
+	public void setNtelefono(String ntelefono) {
 		this.ntelefono = ntelefono;
 	}
 
 
-	public List<Dipendente> getDipendenti() {
-		return dipendenti;
-	}
-
-
-	public void setDipendenti(List<Dipendente> dipendenti) {
-		this.dipendenti = dipendenti;
-	}
 	
 	
 	

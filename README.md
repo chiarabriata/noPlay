@@ -1,1 +1,1 @@
-GESTIONALE AZIENDA noPlay
+Progetto gestionale noPlay
