@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     //===================================lettura aziende=========
 
-    $("#pagina-aziende").load("aziende.html #lista-aziende") //function getAziende() 
+    $("#index").load("benvenuto.html #body-benvenuto") //function getAziende() 
     {
         //chiede ad Alessandro se la mappatura per chiamata get è "aziende"
         $.get("aziende", function(res) {
