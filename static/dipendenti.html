@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dipendenti</title>
+</head>
+<body>
+   <h1>Gestionale Dipendenti</h1>
+   <br><br>
+   <input type="text" name="ricerca" placeholder="Ricerca"><span>
+   </span><button type="button" name="gotoa-ggiungidipendente">Aggiungi</button><span>
+   </span><button type="button" name="indietro">Indietro</button><span>
+   </span><button type="button" name="logout">Logout</button>
+   <table>
+       <thead>
+           <tr>
+               <th>Nome</th>
+               <th>Cognome</th>
+               <th>Ruolo</th>
+               <th>Azioni</th>
+           </tr>
+       </thead>
+       <div id="lista-dipendenti">
+            <tbody>
+                <tr>
+                        <td hidden>[ID]</td>
+                        <td>[NOME]</td>
+                        <td>[COGNOME]</td>
+                        <td>[RUOLO]</td>
+                        <td>
+                            <!--verificare se [ID] serve anche con spring-->
+                            <a href="Index?cmd=dettagliodipendente&id=[ID]">Dettaglio</a>
+                            <a href="Index?cmd=gotomodificadipendente&id=[ID]">Modifica</a>
+                            <a href="Index?cmd=eliminadipendente&id=[ID]">Elimina</a>
+                        </td>
+                </tr>
+            </tbody>
+         </div>
+   </table>
+
+</body>
+</html>
