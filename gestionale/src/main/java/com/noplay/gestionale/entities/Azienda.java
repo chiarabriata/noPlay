@@ -8,6 +8,8 @@ import javax.persistence.Id;
 @Entity
 public class Azienda {
 	
+	// Ennesimo cambiamneto
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
