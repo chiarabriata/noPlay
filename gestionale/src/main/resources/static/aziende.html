@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aziende</title>
+</head>
+<body>
+   <h1>Gestionale Aziende</h1>
+   <br><br>
+   <input type="text" name="ricerca" placeholder="Ricerca"><span>
+   </span><button type="button" name="goto-aggiungi">Aggiungi</button><span>
+   </span><button type="button" name="indietro">Indietro</button><span>
+   </span><button type="button" name="logout">Logout</button>
+   <table>
+       <thead>
+           <tr>
+               <th>Ragione Sociale</th>
+               <th>P.Iva</th>
+               <th>Indirizzo</th>
+               <th>E-mail</th>
+               <th>N.tel</th>
+               <th>Azioni</th>
+           </tr>
+       </thead>
+       <tbody>
+           <div id="lista-aziende">
+                <tr>
+                        <td hidden>[ID]</td>
+                        <td>[RAGIONESOCIALE]</td>
+                        <td>[PIVA]</td>
+                        <td>[INDIRIZZO]</td>
+                        <td>[EMAIL]</td>
+                        <td>[NTEL]</td>
+                        <td>
+                            <!--verificare se [ID] serve anche con spring-->
+                            <a href="Index?cmd=gotomodifica&id=[ID]">Modifica</a>
+                            <a href="Index?cmd=elimina&id=[ID]">Elimina</a>
+                        </td>
+                </tr>
+            </div>
+       </tbody>
+         
+   </table>
+
+</body>
+</html>
