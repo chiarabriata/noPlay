@@ -19,7 +19,7 @@ import com.noplay.gestionale.repositories.CrudDipendente;
 public class DipendenteController {
 
 	// Altro cambiamento ma da Eclipse!!
-	
+	// Abbiamo cambiato tutto ciao
 	@Autowired
 	private CrudDipendente daodipendente;
 	
