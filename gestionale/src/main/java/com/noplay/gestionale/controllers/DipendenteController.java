@@ -18,6 +18,7 @@ import com.noplay.gestionale.repositories.CrudDipendente;
 @RequestMapping("/dipendenti")
 public class DipendenteController {
 
+	// Altro cambiamento ma da Eclipse!!
 	
 	@Autowired
 	private CrudDipendente daodipendente;
