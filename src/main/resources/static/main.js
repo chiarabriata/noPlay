@@ -55,8 +55,8 @@ $(document).ready(function() {
 
 
     //Controllare queste parte
-    $('#navigazione').on('click', '#navigazione', function() {
-        $('#aggiungi-azienda-modal').css('dispaly', 'block');
+    $('#apri-aggiungi-azienda').click( function() {
+        $('#aggiungi-azienda-modal').css('display', 'block');
      })
 
      $('#aggiungi-azienda').click(function(){
@@ -75,7 +75,7 @@ $(document).ready(function() {
                 $('#email').val('');
                 $('#numero-telefono').val('');
 
-                $('#aggiungi-azienda').css('dispaly', 'nome');
+                $('#aggiungi-azienda').css('display', 'none');
 
 
         })
