@@ -3,7 +3,7 @@ $(document).ready(function() {
     //===================================lettura aziende=========
 
     $("#index").load("benvenuto.html #body-benvenuto") //function getAziende() 
-    {
+    function getAziende(){
         //chiede ad Alessandro se la mappatura per chiamata get è "aziende"
         $.get("aziende", function(res) {
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
 
             }
         })
-    }
+    } getAziende();
     //==================================================================================    
 
     //=================Eliminare azienda=======================================
@@ -67,7 +67,7 @@ $(document).ready(function() {
                 email: $('#email').val(),
                 numerotelefono: $('#numero-telefono')};
 
-                aggiungiAzienda();
+                aggiungiAzienda(c);
 
                 $('#ragione-sociale').val('');
                 $('#piva').val('');
@@ -75,18 +75,18 @@ $(document).ready(function() {
                 $('#email').val('');
                 $('#numero-telefono').val('');
 
-                $('#aggiungi-azienda').css('display', 'none');
+                $('#aggiungi-azienda-modal').css('display', 'none');
 
 
         })
     
 
-    function aggiungiAzienda() {
+    function aggiungiAzienda(c) {
         $.ajax({
 
             type: 'POST',
             url: '/aziende',
-            data: JSON.stringify(),
+            data: JSON.stringify(c),
 			contentType: 'application/json',
 			dataType: 'json',
 			success: function(res) {
@@ -206,6 +206,13 @@ $("#ricerca-azienda").keyup(function(){
 
 
 
+
+
+$('#index').on('click', '#pulsante-accedi-homepage', function() {
+    console.log("hai premuto accedi")
+    $('#body-benvenuto').remove();
+    $('#index').load('sezione.html');
+})
 
 
 })
