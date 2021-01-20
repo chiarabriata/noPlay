@@ -55,7 +55,7 @@ $(document).ready(function() {
 
 
     //Controllare queste parte
-    $('#apri-aggiungi-azienda').click (function() {
+    $('#navigazione').on('click', '#navigazione', function() {
         $('#aggiungi-azienda-modal').css('dispaly', 'block');
      })
 
