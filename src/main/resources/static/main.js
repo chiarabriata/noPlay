@@ -26,7 +26,7 @@ $(document).ready(function() {
     //=================Eliminare azienda=======================================
 
 
-    $('lista-aziende').on('click', '.elimina-azienda', function() {
+    $('#lista-aziende').on('click', '.elimina-azienda', function() {
         const id = $(this).attr('data-id')
         eliminaAzienda(id, $(this).parent().parent())
     })
@@ -55,27 +55,31 @@ $(document).ready(function() {
 
 
     //Controllare queste parte
-    $('#apri-aggiungi-azienda').load("ajax/aggiungiazienda.html #aggiungi-azienda", function() {
-        $('#aggiungi-azienda').css('dispaly', 'block');
+    $('#apri-aggiungi-azienda').click( function() {
+        $('#aggiungi-azienda-modal').css('display', 'block');
+     })
 
-    const c = { ragionesociale: $('#ragione-sociale').val(), 
+     $('#aggiungi-azienda').click(function(){
+
+            const c = { ragionesociale: $('#ragione-sociale').val(), 
                 partitaiva: $('#piva').val(),
                 indirizzo: $('#indirizzo').val(), 
                 email: $('#email').val(),
                 numerotelefono: $('#numero-telefono')};
 
-    aggiungiAzienda();
+                aggiungiAzienda();
 
-    $('#ragione-sociale').val('');
-    $('#piva').val('');
-    $('#indirizzo').val('');
-    $('#email').val('');
-    $('#numero-telefono').val('');
+                $('#ragione-sociale').val('');
+                $('#piva').val('');
+                $('#indirizzo').val('');
+                $('#email').val('');
+                $('#numero-telefono').val('');
 
-    $('#aggiungi-azienda').css('dispaly', 'nome');
+                $('#aggiungi-azienda').css('display', 'none');
 
 
-    })
+        })
+    
 
     function aggiungiAzienda() {
         $.ajax({
@@ -97,6 +101,13 @@ $(document).ready(function() {
 
         })
     }
+
+
+    $('.close-aggiungi-azienda').click(function(){
+		$('#aggiungi-azienda-modal').css('display', 'none');
+    })
+    
+
 //===========================================================
 
 

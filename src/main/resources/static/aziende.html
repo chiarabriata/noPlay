@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="jquery-3.5.1.min.js"></script>
     <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
     <title>Aziende</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -47,9 +50,31 @@ form.example::after {
     <input type="text" placeholder="Ricerca.." name="ricerca">
     <button type="submit"><i class="fa fa-search"></i></button>
   </form>
-   </span><button type="button" name="goto-aggiungi">Aggiungi</button><span>
-   </span><button type="button" name="indietro">Indietro</button><span>
-   </span><button type="button" name="logout">Logout</button>
+
+    <div class="modal" id="aggiungi-azienda-modal">
+        <div class="modal-dettagli-aggiungi-azienda">
+            <span class="close close-aggiungi-azienda">&otimes;</span>
+            <h2>Aggiungi azienda</h2>
+            <p>Ragione sociale</p>
+            <input type="text" id="ragione-sociale">
+            <p>Partita Iva</p>
+            <input type="text" id="piva">
+            <p>Indirizzo</p>
+            <input type="text" id="indirizzo">
+            <p>Email</p>
+            <input type="text" id="email">
+            <p>Numero di telefono</p>
+            <input type="text" id="numero-telefono">
+            <button id="aggiungi-azienda">Aggiungi</button>
+            <button class="close-aggiungi-azienda">Chiudi</button>
+
+            
+        </div>
+    </div>
+        </span><button type="button" name="goto-aggiungi" id="apri-aggiungi-azienda">Aggiungi</button><span>
+        </span><button type="button" name="indietro">Indietro</button><span>
+        </span><button type="button" name="logout">Logout</button>
+   
    <table>
        <thead>
            <tr>
@@ -61,26 +86,8 @@ form.example::after {
                <th>Azioni</th>
            </tr>
        </thead>
-       <tbody>
-           <div id="lista-aziende">
-                <tr>
-                       <td hidden>[ID]</td>
-                        <td>[RAGIONESOCIALE]</td>
-                        <td>[PIVA]</td>
-                        <td>[INDIRIZZO]</td>
-                        <td>[EMAIL]</td>
-                        <td>[NTEL]</td>
-                        <td>
-                           
-                            <a href="Index?cmd=gotomodifica&id=[ID]">Modifica</a>
-                            <a href="Index?cmd=elimina&id=[ID]">Elimina</a>
-                        </td>
-                
-                </tr>
-            </div>
+       <tbody id="lista-aziende">
        </tbody>
-         
    </table>
-
 </body>
 </html>
