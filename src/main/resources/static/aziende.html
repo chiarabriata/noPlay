@@ -13,8 +13,29 @@
 <body>
    <h1>Gestionale Aziende</h1>
    <br><br>
+
+
+    <div class="modal" id="aggiungi-azienda-modal">
+        <div class="modal-dettagli-aggiungi-azienda">
+            <span class="close" id="close-aggiungi-azienda">&otimes;</span>
+            <h2>Aggiungi azienda</h2>
+            <p>Ragione sociale</p>
+            <input type="text" id="ragione-sociale">
+            <p>Partita Iva</p>
+            <input type="text" id="piva">
+            <p>Indirizzo</p>
+            <input type="text" id="indirizzo">
+            <p>Email</p>
+            <input type="text" id="email">
+            <p>Numero di telefono</p>
+            <input type="text" id="numero-telefono">
+            <button id="aggiungi-azienda">Aggiungi</button>
+            
+        </div>
+    </div>
+
    <input type="text" name="ricerca" placeholder="Ricerca"><span>
-   </span><button type="button" name="goto-aggiungi" id="apri-aggiungi-azienda" class="modal">Aggiungi</button><span>
+   </span><button type="button" name="goto-aggiungi" id="apri-aggiungi-azienda">Aggiungi</button><span>
    </span><button type="button" name="indietro">Indietro</button><span>
    </span><button type="button" name="logout">Logout</button>
    <table>
