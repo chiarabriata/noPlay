@@ -205,9 +205,6 @@ $("#ricerca-azienda").keyup(function(){
 
 
 
-
-
-
 $('#index').on('click', '#pulsante-accedi-homepage', function() {
     console.log("hai premuto accedi")
     $('#body-benvenuto').remove();
