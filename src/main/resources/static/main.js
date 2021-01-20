@@ -103,7 +103,7 @@ $(document).ready(function() {
     }
 
 
-    $('#close-aggiungi-azienda').click(function(){
+    $('.close-aggiungi-azienda').click(function(){
 		$('#aggiungi-azienda-modal').css('display', 'none');
     })
     
