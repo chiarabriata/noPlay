@@ -38,6 +38,8 @@
         <div class="modal-dettagli-modifica-azienda">
             <span class="close close-modifica-azienda">&otimes;</span>
             <h2>Modifica azienda</h2>
+            <!-- Aggiunto campo hidden per l'id -->
+            <input type="hidden" id="id-modifica"> 
             <p>Ragione sociale</p>
             <input type="text" id="ragione-sociale-modifica">
             <p>Partita Iva</p>
@@ -56,7 +58,7 @@
       <input type="text" id="ricerca-azienda" placeholder="Ricerca per ragione-sociale.." >
         </span><button type="button" name="goto-aggiungi" id="apri-aggiungi-azienda">Aggiungi</button><span>
         </span><button type="button" name="indietro">Indietro</button><span>
-        </span><button type="button" name="logout">Logout</button>
+        </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
    
    <table>
        <thead>

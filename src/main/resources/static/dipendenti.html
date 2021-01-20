@@ -43,6 +43,8 @@
     <div class="modal-dettagli-modifica-dipendente">
         <span class="close close-modifica-dipendente">&otimes;</span>
         <h2>Modifica dipendente</h2>
+        <!-- Aggiunto campo hidden per l'id -->
+        <input type="hidden" id="id-modifica">
         <p>Nome</p>
         <input type="text" id="nome-modifica">
         <p>Cognome</p>
@@ -57,14 +59,15 @@
         <input type="text" id="ruolo-modifica">
         <p>Azienda</p>
         <select id="azienda-dipendente-modifica"></select>
-        <button id="modifica-dipendente">Aggiungi</button>
+        <!-- CAMBIATO DA AGGIUNGI A MODIFICA -->
+        <br><br><button id="modifica-dipendente">Modifica</button>
         <button class="close-modifica-dipendente">Chiudi</button>     
     </div>
 </div>
     <input type="text" id="ricerca-dipendente" placeholder="Ricerca per Cognome.." >
     </span><button type="button" name="goto-aggiungi-dipendente" id="apri-aggiungi-dipendente">Aggiungi</button><span>
     </span><button type="button" name="indietro">Indietro</button><span>
-    </span><button type="button" name="logout">Logout</button>
+    </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
 
    <table>
        <thead>

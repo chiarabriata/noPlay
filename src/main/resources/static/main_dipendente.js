@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
 
-
     // =========================== lettura dipendenti ====================================
     function getListaDipendenti() {
         
@@ -13,11 +12,10 @@ $(document).ready(function() {
                         <td data-id='${res[i].id}'>${res[i].nome}</td>
                         <td>${res[i].cognome}</td>
                         <td>${res[i].ruolo}</td>
-                        <td><button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button><td>
-                        <td><button class='modifica-dipendente' data-id='${res[i].id}'>Modifica</button><td>
-                        <td><button class='elimina-dipendente' data-id='${res[i].id}'>Elimina</button><td>
-                </tr>
-                `).appendTo("#lista-dipendenti");
+                        <td><button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button></a><td>
+                        <td><button class='apri-modifica-dipendente' data-id='${res[i].id}'>Modifica</button><td>
+                        </tr>
+                        `).appendTo("#lista-dipendenti");
 
             }
         })
@@ -25,8 +23,18 @@ $(document).ready(function() {
 
     getListaDipendenti();
 
+    // <td><button class='elimina-dipendente' data-id='${res[i].id}'>Elimina</button><td>
 
     // =========================== dettaglio dipendente ====================================
+
+    $('html').on('click', '.dettaglio-dipendente', function() {
+        console.log("DETTAGLIO")
+        const id = +$(this).attr('data-id');
+        console.log(id)
+        //window.location.href = 'dettagliodipendente.html'
+
+        getDettaglioDipendente(id)
+    })
 
     function getDettaglioDipendente(id) {
         
@@ -104,9 +112,10 @@ $(document).ready(function() {
 				$(`<option class='azienda-modale' value='${res[i].id}'>${res[i].ragionesociale}</option>`).appendTo("#azienda-dipendente");
 			}
 		})
-	}
-
-
+    }
+    
+    
+    
     function aggiungiDipendente(c) {
         $.ajax({
             type: 'POST',
@@ -125,52 +134,75 @@ $(document).ready(function() {
         })
     }
     
-
+    
     $('.close-aggiungi-dipendente').click(function(){
-		$('#aggiungi-dipendente-modal').css('display', 'none');
+        $('#aggiungi-dipendente-modal').css('display', 'none');
     })
-
-
+    
+    
     // =========================== modale modifica dipendente ====================================    
-
-
-
-	$('#lista-prodotti').on('click', '.open-update-prodotto', function() {
-		const id = +$(this).attr('data-id')
-		$.get(`/dipendenti/${id}`, function(res){
-		$('#nome-modifica').val(res.nome);
+    
+    
+    function getAziendaDipendenteModifica() {
+        $.get("aziende", function(res) {
+            for(let i = 0; i < res.length; i++) {
+                $(`<option class='azienda-modale-modifica' value='${res[i].id}'>${res[i].ragionesociale}</option>`).appendTo("#azienda-dipendente-modifica");
+            }
+        })
+    }
+    
+	$('#lista-dipendenti').on('click', '.apri-modifica-dipendente', function() { //SISTEMATO L'EVENTO
+    getAziendaDipendenteModifica();
+    const id = +$(this).attr('data-id')
+    $.get(`/dipendenti/${id}`, function(res){
+        console.log(res)
+        $('#id-modifica').val(res.id); //AGGIUNTO ID
+        $('#nome-modifica').val(res.nome);
         $('#cognome-modifica').val(res.cognome);
         $('#ddn-modifica').val(res.ddn);
         $('#stipendio-modifica').val(res.stipendio);
         $('#data-assunzione-modifica').val(res.dataassunzione);
         $('#ruolo-modifica').val(res.ruolo);
-		$('#azienda-dipendente-modifica').val(res.azienda);
-		
-		})
-		//
-		$('#modifica-dipendente-modal').css('display', 'block');
-		getAziendaDipendenteModifica();
+        
+        $('#azienda-dipendente-modifica').val(res.azienda);//AGGIUNTA SELEZIONE AZIENDA
+        
+    })
+    $('#modifica-dipendente-modal').css('display', 'block');
 	})
 
 
-	$('.modifica-dipendente').click(function(){
-        const c = { nome: $('#nome-modifica').val(), 
+	$('html').on('click', '#modifica-dipendente', function(){ //Era selezionata la classe quando era invece da utilizzare l'ID
+            const c = { 
+            id: $('#id-modifica').val(),
+        nome: $('#nome-modifica').val(), 
         cognome: $('#cognome-modifica').val(), 
         ddn: $('#ddn-modifica').val(), 
         stipendio: $('#stipendio-modifica').val(), 
         dataassunzione: $('#data-assunzione-modifica').val(), 
         ruolo: $('#ruolo-modifica').val(), 
-        categoria: {
-			id: $('#azienda-dipendente-modifica').val(),
-            ragionesociale: "",
-            partitaiva: "",
-            indirizzo: "",
-            email: "",
-            ntelefono: ""
+        azienda: {
+			id: $('#azienda-dipendente-modifica').val() //CANCELLATA LA PARTE CHE NON SERVIVA E CAUSAVA ERRORE
 		}
-	 };
+     };
+     
+        $.ajax({
+            type: 'PUT',
+            url: '/dipendenti',
+            data: JSON.stringify(c),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function(res) {
+            },
+            statusCode: {
+                200: function() {
+                    $('#lista-dipendenti').html('');
+                    getListaDipendenti();
+                    $('#modifica-dipendente-modal').css('display', 'none');
+                }
+            }
+        })
 		
-		modificaDipendente(c);
+		//modificaDipendente(c);
 		
 		$('#nome-modifica').val('');
         $('#cognome-modifica').val('');
@@ -178,7 +210,7 @@ $(document).ready(function() {
         $('#stipendio-modifica').val('');
         $('#data-assunzione-modifica').val('');
         $('#ruolo-modifica').val('');
-		$('#categoria-modal').val('');
+		$('#azienda-dipendente-modifica').val(''); //RIMASTO UN PEZZO DI CATEGORIA
 		$('#modifica-dipendente-modal').css('display', 'none');	
 	})
 
@@ -201,7 +233,7 @@ $(document).ready(function() {
 		})
 	}
 
-	$('#close-modifica-dipendente').click(function() {
+	$('.close-modifica-dipendente').click(function() { //RICHIAMA UNA CLASSE
 		$('#modifica-dipendente-modal').css('display', 'none');
 	})
 
