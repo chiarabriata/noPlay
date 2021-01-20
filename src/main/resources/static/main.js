@@ -164,6 +164,50 @@ $('#chiudi-modifica').click(function()  {
     $('#modifica-azienda').css('display', 'none');
 })
 
+
+// function ricerca() {
+//     var input, filter, table, tr, td, i, txtValue;
+//     input = document.getElementById("ricerca-azienda");
+//     filter = input.value.toUpperCase();
+//     table = document.getElementById("lista-aziende");
+//     tr = table.getElementsByTagName("tr");
+//     for (i = 0; i < tr.length; i++) {
+//         td = tr[i].getElementsByTagName("td")[0];
+//         if (td) {
+//           txtValue = td.textContent || td.innerText;
+//           if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//             tr[i].style.display = "";
+//           } else {
+//             tr[i].style.display = "none";
+//           }
+//         }
+//       }       
+//     }
+
+$("#ricerca-azienda").keyup(function(){
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("ricerca-azienda");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("lista-aziende");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }      
+})
+
+
+
+
+
+
 $('#index').on('click', '#pulsante-accedi-homepage', function() {
     console.log("hai premuto accedi")
     $('#body-benvenuto').remove();
