@@ -164,4 +164,11 @@ $('#chiudi-modifica').click(function()  {
     $('#modifica-azienda').css('display', 'none');
 })
 
+$('#index').on('click', '#pulsante-accedi-homepage', function() {
+    console.log("hai premuto accedi")
+    $('#body-benvenuto').remove();
+    $('#index').load('sezione.html');
+})
+
+
 })
