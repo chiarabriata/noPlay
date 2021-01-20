@@ -6,12 +6,48 @@
      <script src="jquery-3.5.1.min.js"></script>
     <script src="main.js"></script>
     <title>Dipendenti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
 </head>
 <body>
    <h1>Gestionale Dipendenti</h1>
    <br><br>
-   <input type="text" name="ricerca" placeholder="Ricerca"><span>
-   </span><button type="button" name="gotoa-ggiungidipendente">Aggiungi</button><span>
+   <form class="ricerca" action="dipendenti.html">
+    <input type="text" placeholder="Ricerca.." name="ricerca">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+   </span><button type="button" name="gotoaggiungidipendente">Aggiungi</button><span>
    </span><button type="button" name="indietro">Indietro</button><span>
    </span><button type="button" name="logout">Logout</button>
    <table>
