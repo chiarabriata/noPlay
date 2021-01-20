@@ -14,12 +14,7 @@
 <body>
    <h1>Gestionale Dipendenti</h1>
    <br><br>
-   <form class="ricerca" action="dipendenti.html">
-    <input type="text" placeholder="Ricerca.." name="ricerca">
-    <button type="submit"><i class="fa fa-search"></i></button>
-  </form>
-
-
+   
   <div class="modal" id="aggiungi-dipendente-modal">
     <div class="modal-dettagli-aggiungi-dipendente">
         <span class="close close-aggiungi-dipendente">&otimes;</span>
@@ -65,9 +60,8 @@
         <button id="modifica-dipendente">Aggiungi</button>
         <button class="close-modifica-dipendente">Chiudi</button>     
     </div>
-  </div>
-
-
+</div>
+    <input type="text" id="ricerca-dipendente" placeholder="Ricerca per Cognome.." >
     </span><button type="button" name="goto-aggiungi-dipendente" id="apri-aggiungi-dipendente">Aggiungi</button><span>
     </span><button type="button" name="indietro">Indietro</button><span>
     </span><button type="button" name="logout">Logout</button>
