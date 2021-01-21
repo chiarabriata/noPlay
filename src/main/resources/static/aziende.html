@@ -7,6 +7,7 @@
     <script src="main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <title>Aziende</title>
 </head>
@@ -20,15 +21,16 @@
             <span class="close close-aggiungi-azienda">&otimes;</span>
             <h2>Aggiungi azienda</h2>
             <p>Ragione sociale</p>
-            <input type="text" id="ragione-sociale">
+            <input type="text" id="ragione-sociale" required>
             <p>Partita Iva</p>
-            <input type="text" id="piva">
+            <input type="number" id="piva" class="partitaiva" maxlength="11" required> 
+            <p id="help-partitaiva"><i>Inserire 11 numeri</i></p>
             <p>Indirizzo</p>
-            <input type="text" id="indirizzo">
+            <input type="text" id="indirizzo" required>
             <p>Email</p>
-            <input type="text" id="email">
+            <input type="email" id="email" class="formattazione-email" required>
             <p>Numero di telefono</p>
-            <input type="text" id="numero-telefono">
+            <input type="number" id="numero-telefono" class="formattazione-telefono" required>
             <button id="aggiungi-azienda">Aggiungi</button>
             <button class="close-aggiungi-azienda">Chiudi</button>
         </div>
@@ -43,13 +45,13 @@
             <p>Ragione sociale</p>
             <input type="text" id="ragione-sociale-modifica">
             <p>Partita Iva</p>
-            <input type="text" id="piva-modifica">
+            <input type="number" id="piva-modifica" maxlength="11" class="partitaiva">
             <p>Indirizzo</p>
             <input type="text" id="indirizzo-modifica">
             <p>Email</p>
-            <input type="text" id="email-modifica">
+            <input type="email" id="email-modifica" class="formattazione-email">
             <p>Numero di telefono</p>
-            <input type="text" id="numero-telefono-modifica">
+            <input type="number" id="numero-telefono-modifica" class="formattazione-telefono">
             <button id="modifica-azienda">Modifica</button>
             <button class="close-modifica-azienda">Chiudi</button>
         </div>
