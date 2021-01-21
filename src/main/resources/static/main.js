@@ -7,13 +7,13 @@ $(document).ready(function() {
         $.get("aziende", function(res) {
 
             for(let i = 0; i < res.length; i++) {
-                $(`<tr>
+                $(`<tr class="item">
                         <td data-id='${res[i].id}'>${res[i].ragionesociale}</td>
                         <td>${res[i].partitaiva}</td>
                         <td>${res[i].indirizzo}</td>
                         <td>${res[i].email}</td>
                         <td>${res[i].ntelefono}</td>
-                        <td><button class='apri-modifica-azienda' data-id='${res[i].id}'>Modifica</button><td>
+                        <td><button class='apri-modifica-azienda' data-id='${res[i].id}'>Modifica</button></td>
                         </tr>`).appendTo("#lista-aziende");
 
             }
