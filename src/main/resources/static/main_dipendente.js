@@ -33,6 +33,7 @@ $(document).ready(function() {
         //window.location.href = 'dettagliodipendente.html'
         //$('html').remove('html')
         
+        //$('#body-dettaglio-dipendente').html('');
         getDettaglioDipendente(id)
     })
     
@@ -185,25 +186,26 @@ $(document).ready(function() {
 			id: $('#azienda-dipendente-modifica').val() //CANCELLATA LA PARTE CHE NON SERVIVA E CAUSAVA ERRORE
 		}
      };
+
      
-        $.ajax({
-            type: 'PUT',
-            url: '/dipendenti',
-            data: JSON.stringify(c),
-            contentType: 'application/json',
-            dataType: 'json',
-            success: function(res) {
-            },
-            statusCode: {
-                200: function() {
-                    $('#lista-dipendenti').html('');
-                    getListaDipendenti();
-                    $('#modifica-dipendente-modal').css('display', 'none');
-                }
-            }
-        })
+        // $.ajax({
+        //     type: 'PUT',
+        //     url: '/dipendenti',
+        //     data: JSON.stringify(c),
+        //     contentType: 'application/json',
+        //     dataType: 'json',
+        //     success: function(res) {
+        //     },
+        //     statusCode: {
+        //         200: function() {
+        //             $('#lista-dipendenti').html('');
+        //             getListaDipendenti();
+        //             $('#modifica-dipendente-modal').css('display', 'none');
+        //         }
+        //     }
+        // })
 		
-		//modificaDipendente(c);
+		modificaDipendente(c);
 		
 		$('#nome-modifica').val('');
         $('#cognome-modifica').val('');
