@@ -20,19 +20,21 @@
         <span class="close close-aggiungi-dipendente">&otimes;</span>
         <h2>Aggiungi dipendente</h2>
         <p>Nome</p>
-        <input type="text" id="nome">
+        <input type="text" id="nome" required>
         <p>Cognome</p>
-        <input type="text" id="cognome">
+        <input type="text" id="cognome" required>
         <p>Data di nascita</p>
-        <input type="date" id="ddn">
+        <input type="date" id="ddn" class="formattazione-ddn" onkeyup="FAD()" required>
+        <p id="help-ddn">Inserire formattazione aaaa/mm/gg</p>
         <p>Stipendio</p>
-        <input type="number" id="stipendio">
+        <input type="number" id="stipendio" required>
         <p>Data di assunzione</p>
-        <input type="date" id="data-assunzione">
+        <input type="date" id="data-assunzione" class="formattazione-data-assunzione" required>
+        <p id="help-data-assunzione">Inserire formattazione aaaa/mm/gg</p>
         <p>Ruolo</p>
-        <input type="text" id="ruolo">
+        <input type="text" id="ruolo" required>
         <p>Azienda</p>
-        <select id="azienda-dipendente"></select>
+        <select id="azienda-dipendente" required></select>
         <button id="aggiungi-dipendente">Aggiungi</button>
         <button class="close-aggiungi-dipendente">Chiudi</button>     
     </div>
@@ -50,11 +52,13 @@
         <p>Cognome</p>
         <input type="text" id="cognome-modifica">
         <p>Data di nascita</p>
-        <input type="date" id="ddn-modifica">
+        <input type="date" id="ddn-modifica" class="formattazione-ddn">
+        <p id="help-ddn">Inserire formattazione aaaa/mm/gg</p>
         <p>Stipendio</p>
         <input type="number" id="stipendio-modifica">
         <p>Data di assunzione</p>
-        <input type="date" id="data-assunzione-modifica">
+        <input type="date" id="data-assunzione-modifica" class="formattazione-data-assunzione">
+        <p id="help-data-assunzione">Inserire formattazione aaaa/mm/gg</p>
         <p>Ruolo</p>
         <input type="text" id="ruolo-modifica">
         <p>Azienda</p>
