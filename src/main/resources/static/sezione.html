@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script src="jquery-3.5.1.min.js"></script>
+    
     <script src="main.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <title>Sezioni</title>
 </head>
-<body>
-    <div id='body-sezione'>
-    <h1>Benvenuto @Utente</h1>
-    <h3>Scegli la tua sezione</h3>
-    <br><br>
-    <a href="aziende.html"><button name="Aziende" id="pulsante-sezione-aziende">Aziende</button></a><span> <span><a href="dipendenti.html"><button type="button" name="Dipendenti">Dipendenti</button></a>
+<body class="d-flex flex-column min-vh-100">
+    
+    <div class="jumbotron text-center header" style="margin-bottom:0">
+        <h2>Benvenuto @Utente</h2>
+        <p>Scegli la tua sezione</p> 
+      </div>
+      
+<!--bottoni-->
+    <div class="container-fluid">
+    <div id='body-sezione' class="container2 text-center">
+        <a href="aziende.html"><button type="button" class="btn col-sm-6 btn2" name="Aziende" id="pulsante-sezione-aziende">Aziende</button></a>
+        
+        <a href="dipendenti.html"><button type="button" class="btn col-sm-6 btn2" name="Dipendenti">Dipendenti</button></a>
     </div>
+    </div>
+
+    <div class="jumbotron text-right footer mt-auto" style="margin-bottom: 0">
+        <button type="button " class="btn">?</button>
+       </div>
 </body>
 </html>

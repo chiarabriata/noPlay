@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script src="jquery-3.5.1.min.js"></script>
+    
     <script src="main.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <title>noPlay</title>
+
+ 
 </head>
-<body>
-    <div id='body-benvenuto'>
-    <h1>Benvenuto nel Gestionale noPlay</h1>
-    <br>
-    <h2>Homepage</h2>
-    <br>
-    <h3>Accedi al tuo account</h3>
-    <p>Inserisci i tuoi dati per accedere</p>
-    <br>
+<body  class="d-flex flex-column min-vh-100" >
+  <div id="body-benvenuto">
+    <!-- <form>
+        <div class="jumbotron text-center">
+        <div class="mb-3">
+        <div id='body-benvenuto'>
+        <h1>Benvenuto nel Gestionale noPlay</h1>
+        <br>
+        <h2>Homepage</h2>
+        <br>
+        <h3>Accedi al tuo account</h3>
+        <p>Inserisci i tuoi dati per accedere</p>
+        <br>
     <p>Username</p>
     <input type="text" name="username" placeholder="Email o Nickname...">
     <br>
@@ -25,6 +38,34 @@
     <br>
     <br>
     <a href="sezione.html"><button type="button" name="accedi" id="pulsante-accedi-homepage">Accedi</button></a>
-    </div>
+    </div> -->
+
+    <div class="jumbotron text-center header" style="margin-bottom:0">
+        <h2>Benvenuto nel Gestionale noPlay</h2>
+      </div>
+
+      <div class="container align-center" >
+        <form action="" role="form">
+            <div class="form-group">
+              <h5 class="text-center">Accedi al tuo account</h5>
+                <label for="email">Username:</label>
+                <input type="text" class="form-control form-control-sm" id="email" placeholder="Inserire username" name="username">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control form-control-sm" id="pwd" placeholder="Inserire password" name="password">
+              </div>
+              <div class="btn1">
+              <a href="sezione.html"></a><button type="submit" class="btn btn-warning text-white btn1" name="accedi">Accedi</button>
+            </div>
+            </form>
+      </div>
+      
+      </div>
+      
+      <div class="jumbotron text-right footer mt-auto" style="margin-bottom:0">
+       <button type="button " class="btn">?</button>
+      </div>
+    
 </body>
 </html>

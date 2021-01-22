@@ -5,21 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="jquery-3.5.1.min.js"></script>
     <script src="main.js"></script>
+
+    <!--aggiunta di bootstrap-->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 
     <title>Aziende</title>
 </head>
-<body class="w3-container">
-   <h1>Gestionale Aziende</h1>
-   <br><br>
-   
 
-    <div class="modal" id="aggiungi-azienda-modal">
+
+<body class="w3-container d-flex flex-column min-vh-100" style="padding: 0%;">
+
+   <div class="jumbotron text-center header" style="margin-bottom:0">
+    <h1>Gestionale Aziende</h1>
+  
+<!--modale aggiungi azienda-->
+    <!-- <div class="modal" id="aggiungi-azienda-modal">
         <div class="modal-dettagli-aggiungi-azienda">
             <span class="close close-aggiungi-azienda">&otimes;</span>
             <h2>Aggiungi azienda</h2>
@@ -38,12 +51,12 @@
             <button class="close-aggiungi-azienda">Chiudi</button>
         </div>
     </div>
-    <!--modal modifica azienda -->
+    modal modifica azienda 
     <div class="modal" id="modifica-azienda-modal">
         <div class="modal-dettagli-modifica-azienda">
             <span class="close close-modifica-azienda">&otimes;</span>
             <h2>Modifica azienda</h2>
-            <!-- Aggiunto campo hidden per l'id -->
+             Aggiunto campo hidden per l'id 
             <input type="hidden" id="id-modifica"> 
             <p>Ragione sociale</p>
             <input type="text" id="ragione-sociale-modifica">
@@ -58,16 +71,28 @@
             <button id="modifica-azienda">Modifica</button>
             <button class="close-modifica-azienda">Chiudi</button>
         </div>
-    </div> 
-    
-      <input type="text" id="ricerca-azienda" placeholder="Ricerca per ragione-sociale.." >
-        </span><button type="button" name="goto-aggiungi" id="apri-aggiungi-azienda">Aggiungi</button><span>
-        </span><a href="sezione.html"><button type="button" name="indietro">Indietro</button></a><span>
-        </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
-   <br><br>
-   <table id="myTable">
+    </div>  -->
+
+    <div class="container-3">
+        <!--ricerca-->
+        <div class="row">
+        <div class="col text-left">
+            <input type="text" id="ricerca-azienda" placeholder="Ricerca per ragione-sociale.." >
+            </div>    
+            <!--bottoni a destra-->
+            <div class="col text-right ">
+            </span><button class="btn-azienda" type="button" name="goto-aggiungi" id="apri-aggiungi-azienda">Aggiungi</button><span>
+                </span><a href="sezione.html"><button class="btn-azienda" type="button" name="indietro">Indietro</button></a><span>
+                </span><a href="benvenuto.html"><button class="btn-azienda" type="button" name="logout">Logout</button></a>
+            </div>
+        </div>
+    </div>
+    </div>
+   
+<div class="container-4" style="margin: 5%;">
+    <table id="myTable" class="table table-hover" style="padding: 5%;">
        <thead>
-           <tr>
+           <tr  class="testa">
                <th onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(1)')">Ragione Sociale</th>
                <th>P.Iva</th>
                <th>Indirizzo</th>
@@ -79,7 +104,53 @@
        <tbody id="lista-aziende">
        </tbody>
    </table>
-   <br>
-   <button>?</button>
+</div>
+
+   <div class="modal" id="aggiungi-azienda-modal">
+    <div class="modal-dettagli-aggiungi-azienda">
+        <span class="close close-aggiungi-azienda">&otimes;</span>
+        <h2>Aggiungi azienda</h2>
+        <p>Ragione sociale</p>
+        <input type="text" id="ragione-sociale" required>
+        <p>Partita Iva</p>
+        <input type="number" id="piva" class="partitaiva" maxlength="11" required> 
+        <p id="help-partitaiva"><i>Inserire 11 numeri</i></p>
+        <p>Indirizzo</p>
+        <input type="text" id="indirizzo" required>
+        <p>Email</p>
+        <input type="email" id="email" class="formattazione-email" required>
+        <p>Numero di telefono</p>
+        <input type="number" id="numero-telefono" class="formattazione-telefono" required>
+        <button id="aggiungi-azienda">Aggiungi</button>
+        <button class="close-aggiungi-azienda">Chiudi</button>
+    </div>
+</div>
+<!--modal modifica azienda -->
+<div class="modal" id="modifica-azienda-modal">
+    <div class="modal-dettagli-modifica-azienda">
+        <span class="close close-modifica-azienda">&otimes;</span>
+        <h2>Modifica azienda</h2>
+        <!-- Aggiunto campo hidden per l'id -->
+        <input type="hidden" id="id-modifica"> 
+        <p>Ragione sociale</p>
+        <input type="text" id="ragione-sociale-modifica">
+        <p>Partita Iva</p>
+        <input type="number" id="piva-modifica" maxlength="11" class="partitaiva">
+        <p>Indirizzo</p>
+        <input type="text" id="indirizzo-modifica">
+        <p>Email</p>
+        <input type="email" id="email-modifica" class="formattazione-email">
+        <p>Numero di telefono</p>
+        <input type="number" id="numero-telefono-modifica" class="formattazione-telefono">
+        <button id="modifica-azienda">Modifica</button>
+        <button class="close-modifica-azienda">Chiudi</button>
+    </div>
+</div> 
+
+<!--footer-->
+   <div class="jumbotron text-right footer mt-auto " style="margin-bottom:0">
+    <button type="button " class="btn">?</button>
+   </div>
+
 </body>
 </html>
