@@ -1,5 +1,100 @@
 $(document).ready(function() {
 
+
+
+    //==============================formattazione campi html==============
+
+    //====Partita iva====
+
+    $(".partitaiva").on("input", function() {
+
+        if($(this).val() == "")
+        $(".partitaiva").css({backgroundColor:""});
+
+        else {
+            if (checkPartitaIva($(this).val()))
+                $(".partitaiva").css({color:"green"}),
+                $("#help-partitaiva").textContent='formattazione corretta';
+               
+            else 
+                $(".partitaiva").css({color:"red"});
+                $("#help-partitaiva").textContent='formattazione errata';
+                
+                
+        }
+    })
+
+         var pi;
+    function checkPartitaIva(pi) {
+        pi = $('.partitaiva').val();
+        if (pi == '') return false;
+        else if (/^[0-9]{11}$/.test(pi)) return true;
+        else return false;
+      }
+
+//====email
+
+    $(".formattazione-email").on("input", function() {
+
+        if($(this).val() == "")
+        $(".formattazione-email").css({backgroundColor:""});
+
+        else {
+            if (checkEmail($(this).val()))
+                $(".formattazione-email").css({color:"green"});
+            
+            else 
+                $(".formattazione-email").css({color:"red"});
+                
+                
+        }
+    })
+
+    var em;
+    function checkEmail(em) {
+        em = $('.formattazione-email').val();
+        if (em == '') return false;
+        else if (/[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/.test(em)) return true;
+        else return false;
+    }
+
+
+//=======numero telefono
+
+
+    $(".formattazione-telefono").on("input", function() {
+
+        if($(this).val() == "")
+        $(".formattazione-telefono").css({backgroundColor:""});
+
+        else {
+            if (checkNumeroTelefono($(this).val()))
+                $(".formattazione-telefono").css({color:"green"});
+            
+            else 
+                $(".formattazione-telefono").css({color:"red"});
+               
+                
+                
+        }
+    })
+
+    var nt;
+    function checkNumeroTelefono(nt) {
+        nt = $('.formattazione-telefono').val();
+        if (nt == '') return false;
+        else if (/^[0-9]{6,10}$/.test(nt)) return true;
+        else return false;
+    }
+
+
+
+//=====
+
+
+
+
+
     //===================================lettura aziende=========
 
     $("#index").load("benvenuto.html #body-benvenuto")
@@ -7,13 +102,13 @@ $(document).ready(function() {
         $.get("aziende", function(res) {
 
             for(let i = 0; i < res.length; i++) {
-                $(`<tr>
+                $(`<tr class="item">
                         <td data-id='${res[i].id}'>${res[i].ragionesociale}</td>
                         <td>${res[i].partitaiva}</td>
                         <td>${res[i].indirizzo}</td>
                         <td>${res[i].email}</td>
                         <td>${res[i].ntelefono}</td>
-                        <td><button class='apri-modifica-azienda' data-id='${res[i].id}'>Modifica</button><td>
+                        <td><button class='apri-modifica-azienda' data-id='${res[i].id}'>Modifica</button></td>
                         </tr>`).appendTo("#lista-aziende");
 
             }
@@ -58,6 +153,9 @@ $(document).ready(function() {
      })
 
      $('#aggiungi-azienda').click(function(){
+            
+
+            
 
             const c = { ragionesociale: $('#ragione-sociale').val(), 
                 partitaiva: $('#piva').val(),
@@ -65,6 +163,12 @@ $(document).ready(function() {
                 email: $('#email').val(),
                 ntelefono: $('#numero-telefono').val()}; //MANCAVA IL .VAL()
 
+
+                if(checkPartitaIva(pi) && checkEmail(em) && checkNumeroTelefono(nt)){
+                    console.log(pi);
+                    
+
+                
                 aggiungiAzienda(c);
 
                 $('#ragione-sociale').val('');
@@ -75,7 +179,8 @@ $(document).ready(function() {
 
                 $('#aggiungi-azienda-modal').css('display', 'none');
 
-
+                }
+                console.log("aggiunta non effettuata")
         })
     
 
@@ -147,6 +252,9 @@ $('#lista-aziende').on("click", ".apri-modifica-azienda", function() {
 // })
 
 $('html').on('click', '#modifica-azienda', function() {
+
+    
+
     const c = { id: +$('#id-modifica').val(),   //AGGIUNTO ID CON IL + DAVANTI
                 ragionesociale: $('#ragione-sociale-modifica').val(), 
                 partitaiva: $('#piva-modifica').val(),
@@ -155,32 +263,29 @@ $('html').on('click', '#modifica-azienda', function() {
                 ntelefono: $('#numero-telefono-modifica').val() //MANCAVA IL .VAL()
                 
                  };
-                //console.log(c);
-                //modificaAzienda(c);
-                $.ajax({
-                    type: 'PUT',
-                    url: '/aziende',
-                    data: JSON.stringify(c),
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    success: function(res) {
-                    },
-                    statusCode: {
-                        200: function() {
-                            $('#lista-aziende').html('');
-                            getAziende();
-                            
-                        }
-                    }
-            
-                })
 
-        $('#ragione-sociale-modifica').val('');
-		$('#piva-modifica').val('');
-		$('#indirizzo-modifica').val('');
-		$('#email-modifica').val('');
-		$('#numero-telefono-modifica').val('');
-		$('#modifica-azienda-modal').css('display', 'none');	
+                
+                // pi = $('#piva-modifica').val(),
+                // em = $('#email-modifica').val(),
+                // nt = $('#numero-telefono-modifica').val();
+
+                
+                
+
+                 //MANCAVA IL .VAL()
+                 
+                   
+        
+                modificaAzienda(c); 
+                
+
+                    $('#ragione-sociale-modifica').val('');
+                    $('#piva-modifica').val('');
+                    $('#indirizzo-modifica').val('');
+                    $('#email-modifica').val('');
+                    $('#numero-telefono-modifica').val('');
+                    $('#modifica-azienda-modal').css('display', 'none');	
+                 
 })
 
 //$('#modifica-azienda').click(function(){

@@ -8,10 +8,13 @@
     <script src="main_dipendente.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
     <title>Dipendenti</title>
 </head>
 
-<body>
+<body class="w3-container">
    <h1>Gestionale Dipendenti</h1>
    <br><br>
    
@@ -70,14 +73,14 @@
 </div>
     <input type="text" id="ricerca-dipendente" placeholder="Ricerca per Cognome.." >
     </span><button type="button" name="goto-aggiungi-dipendente" id="apri-aggiungi-dipendente">Aggiungi</button><span>
-    </span><button type="button" name="indietro">Indietro</button><span>
+    </span><a href="sezione.html"><button type="button" name="indietro">Indietro</button></a><span>
     </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
-
-   <table>
+    <br><br>
+   <table id="myTable">
        <thead>
            <tr>
-               <th>Nome</th>
-               <th>Cognome</th>
+               <th onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(1)')">Nome</th>
+               <th onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(2)')">Cognome</th>
                <th>Ruolo</th>
                <th>Azioni</th>
            </tr>
@@ -85,6 +88,7 @@
             <tbody id="lista-dipendenti">
             </tbody>
    </table>
-
+   <br>
+   <button>?</button>
 </body>
 </html>
