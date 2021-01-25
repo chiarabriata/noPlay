@@ -90,9 +90,12 @@ $(document).ready(function() {
                     numerotelefono: "",
                     partitaiva: "",
                     email: ""
+                },
+                dbFile: {
+                    percorso: $('#immagine-dipendente').val()
                 }
             };
-
+                console.log(c.dbFile);
                 aggiungiDipendente(c);
 
                 $('#nome').val('');
@@ -127,10 +130,34 @@ $(document).ready(function() {
             },
             statusCode: {
                 200: function() {
+                    aggiungiFoto(c)
                     $('#lista-dipendenti').html('');
+
+                    getListaDipendenti();
+                
+                }
+            }
+        })
+    }
+
+    function aggiungiFoto(c) {
+        $.ajax({
+            type: 'POST',
+            url: '/uploadFile',
+            data: JSON.stringify(c),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function(res) {
+            },
+            statusCode: {
+                200: function() {
+                    $('#lista-dipendente').html('');
                     getListaDipendenti();
                 }
             }
+
+
+
         })
     }
     
