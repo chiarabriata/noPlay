@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-   //==============================formattazione campi html==============
 
     //====Partita iva====
 
@@ -89,8 +88,9 @@ $(document).ready(function () {
   }
 
 
+    //===================================lettura aziende=========
 
-  //===================================lettura aziende=========
+   
 
   $("#index").load("benvenuto.html #body-benvenuto");
   function getAziende() {
@@ -111,8 +111,88 @@ $(document).ready(function () {
   //==================================================================================
   // <td><button class='elimina-azienda' data-id='${res[i].id}'>Elimina</><td> //COMMENTATO L'ELIMINA
 
-  //=================Eliminare azienda=======================================
 
+
+    //=================Eliminare azienda=======================================
+    
+
+    $('#lista-aziende').on('click', '.elimina-azienda', function() {
+        const id = $(this).attr('data-id')
+        eliminaAzienda(id, $(this).parent().parent())
+    })
+
+    function eliminaAzienda(id, rigaAzienda) {
+        //chiamata personalizzata. controllare la mappatura
+        $.ajax({
+            url: `aziende/${id}`,
+            type:'DELETE',
+            success: function() {
+                rigaAzienda.remove()
+            }
+        })
+       
+
+    }
+
+
+    //============================================================================
+    //==========================aggiungi azienda==================================
+
+
+    //Controllare queste parte
+    $('#apri-aggiungi-azienda').click( function() {
+        $('#aggiungi-azienda-modal').css('display', 'block');
+     })
+
+     $('#aggiungi-azienda').click(function(){
+            
+
+            
+
+            const c = { ragionesociale: $('#ragione-sociale').val(), 
+                partitaiva: $('#piva').val(),
+                indirizzo: $('#indirizzo').val(), 
+                email: $('#email').val(),
+                ntelefono: $('#numero-telefono').val()}; //MANCAVA IL .VAL()
+
+
+                
+                    
+
+                
+                aggiungiAzienda(c);
+
+                $('#ragione-sociale').val('');
+                $('#piva').val('');
+                $('#indirizzo').val('');
+                $('#email').val('');
+                $('#numero-telefono').val('');
+
+                $('#aggiungi-azienda-modal').css('display', 'none');
+
+                
+                console.log("aggiunta non effettuata")
+        })
+    
+
+    function aggiungiAzienda(c) {
+        $.ajax({
+
+            type: 'POST',
+            url: '/aziende',
+            data: JSON.stringify(c),
+			contentType: 'application/json',
+			dataType: 'json',
+			success: function(res) {
+            },
+            statusCode: {
+                200: function() {
+                    $('#lista-aziende').html('');
+                    getAziende();
+                }
+            }
+          })
+        };
   $("#lista-aziende").on("click", ".elimina-azienda", function () {
     const id = $(this).attr("data-id");
     eliminaAzienda(id, $(this).parent().parent());
@@ -186,7 +266,11 @@ $(document).ready(function () {
 
   //===========================================================
 
-  //=====================modifica azienda=====================
+
+
+
+        
+    
 
   $("#lista-aziende").on("click", ".apri-modifica-azienda", function () {
     const id = +$(this).attr("data-id");
