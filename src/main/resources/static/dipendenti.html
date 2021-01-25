@@ -27,13 +27,11 @@
         <p>Cognome</p>
         <input type="text" id="cognome" required>
         <p>Data di nascita</p>
-        <input type="date" id="ddn" class="formattazione-ddn" onkeyup="FAD()" required>
-        <p id="help-ddn">Inserire formattazione aaaa/mm/gg</p>
+        <input type="date" id="ddn" class="formattazione-ddn" required>
         <p>Stipendio</p>
         <input type="number" id="stipendio" required>
         <p>Data di assunzione</p>
         <input type="date" id="data-assunzione" class="formattazione-data-assunzione" required>
-        <p id="help-data-assunzione">Inserire formattazione aaaa/mm/gg</p>
         <p>Ruolo</p>
         <input type="text" id="ruolo" required>
         <p>Azienda</p>
@@ -51,24 +49,22 @@
         <!-- Aggiunto campo hidden per l'id -->
         <input type="hidden" id="id-modifica">
         <p>Nome</p>
-        <input type="text" id="nome-modifica">
+        <input type="text" id="nome-modifica" required>
         <p>Cognome</p>
-        <input type="text" id="cognome-modifica">
+        <input type="text" id="cognome-modifica" required>
         <p>Data di nascita</p>
         <input type="date" id="ddn-modifica" class="formattazione-ddn">
-        <p id="help-ddn">Inserire formattazione aaaa/mm/gg</p>
         <p>Stipendio</p>
         <input type="number" id="stipendio-modifica">
         <p>Data di assunzione</p>
         <input type="date" id="data-assunzione-modifica" class="formattazione-data-assunzione">
-        <p id="help-data-assunzione">Inserire formattazione aaaa/mm/gg</p>
         <p>Ruolo</p>
         <input type="text" id="ruolo-modifica">
         <p>Azienda</p>
         <select id="azienda-dipendente-modifica"></select>
         <!-- CAMBIATO DA AGGIUNGI A MODIFICA -->
         <br><br><button id="modifica-dipendente">Modifica</button>
-        <button class="close-modifica-dipendente">Chiudi</button>     
+        <button class="close-modifica-dipendente">Chiudi</button>  
     </div>
 </div>
     <input type="text" id="ricerca-dipendente" placeholder="Ricerca per Cognome.." >
@@ -88,7 +84,20 @@
             <tbody id="lista-dipendenti">
             </tbody>
    </table>
-   <br>
-   <button>?</button>
+   <br><br>
+
+
+   <!-- FAQ -->
+   <div class="modal" id="modale-faq-dipendenti">
+    <div>
+        <span class="close chiudi-modale-faq-dipendenti">&otimes;</span>
+        <div id="contenuto-modale-faq-dipendenti"></div>
+        <button id="chiudi-faq-dipendenti">Chiudi</button>
+    </div>
+</div>
+<span><button type="button" id="apri-modale-faq-dipendenti">?</button></span>
+
+
+
 </body>
 </html>

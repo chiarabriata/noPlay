@@ -1,69 +1,94 @@
 $(document).ready(function () {
-  //==============================formattazione campi html==============
 
-  //====Partita iva====
+   //==============================formattazione campi html==============
 
-  $(".partitaiva").on("input", function () {
-    if ($(this).val() == "") $(".partitaiva").css({ backgroundColor: "" });
-    else {
-      if (checkPartitaIva($(this).val()))
-        $(".partitaiva").css({ color: "green" }),
-          ($("#help-partitaiva").textContent = "formattazione corretta");
-      else $(".partitaiva").css({ color: "red" });
-      $("#help-partitaiva").textContent = "formattazione errata";
-    }
-  });
+    //====Partita iva====
 
-  var pi;
+    $(".partitaiva").on("input", function() {
+
+      if($(this).val() == "")
+      $(".partitaiva").css({backgroundColor:""});
+
+      else {
+          if (checkPartitaIva($(this).val()))
+              $(".partitaiva").css({color:"green"}),
+              $("#help-partitaiva").textContent='formattazione corretta';
+             
+          else 
+              $(".partitaiva").css({color:"red"});
+              $("#help-partitaiva").textContent='formattazione errata';
+              
+              
+      }
+  })
+
+       var pi;
   function checkPartitaIva(pi) {
-    pi = $(".partitaiva").val();
-    if (pi == "") return false;
-    else if (/^[0-9]{11}$/.test(pi)) return true;
-    else return false;
-  }
-
-  //====email
-
-  $(".formattazione-email").on("input", function () {
-    if ($(this).val() == "")
-      $(".formattazione-email").css({ backgroundColor: "" });
-    else {
-      if (checkEmail($(this).val()))
-        $(".formattazione-email").css({ color: "green" });
-      else $(".formattazione-email").css({ color: "red" });
+      pi = $('.partitaiva').val();
+      if (pi == '') return false;
+      else if (/^[0-9]{11}$/.test(pi)) return true;
+      else return false;
     }
-  });
+
+//====email
+
+  $(".formattazione-email").on("input", function() {
+
+      if($(this).val() == "")
+      $(".formattazione-email").css({backgroundColor:""});
+
+      else {
+          if (checkEmail($(this).val()))
+              $(".formattazione-email").css({color:"green"});
+          
+          else 
+              $(".formattazione-email").css({color:"red"});
+              
+              
+      }
+  })
 
   var em;
   function checkEmail(em) {
-    em = $(".formattazione-email").val();
-    if (em == "") return false;
-    else if (/[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/.test(em))
-      return true;
-    else return false;
+      em = $('.formattazione-email').val();
+      if (em == '') return false;
+      else if (/[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/.test(em)) return true;
+      else return false;
   }
 
-  //=======numero telefono
 
-  $(".formattazione-telefono").on("input", function () {
-    if ($(this).val() == "")
-      $(".formattazione-telefono").css({ backgroundColor: "" });
-    else {
-      if (checkNumeroTelefono($(this).val()))
-        $(".formattazione-telefono").css({ color: "green" });
-      else $(".formattazione-telefono").css({ color: "red" });
-    }
-  });
+  
+
+
+//=======numero telefono
+
+
+  $(".formattazione-telefono").on("input", function() {
+
+      if($(this).val() == "")
+      $(".formattazione-telefono").css({backgroundColor:""});
+
+      else {
+          if (checkNumeroTelefono($(this).val()))
+              $(".formattazione-telefono").css({color:"green"});
+          
+          else 
+              $(".formattazione-telefono").css({color:"red"});
+             
+              
+              
+      }
+  })
 
   var nt;
   function checkNumeroTelefono(nt) {
-    nt = $(".formattazione-telefono").val();
-    if (nt == "") return false;
-    else if (/^[0-9]{6,10}$/.test(nt)) return true;
-    else return false;
+      nt = $('.formattazione-telefono').val();
+      if (nt == '') return false;
+      else if (/^[0-9]{6,10}$/.test(nt)) return true;
+      else return false;
   }
 
-  //=====
+
 
   //===================================lettura aziende=========
 
@@ -169,6 +194,7 @@ $(document).ready(function () {
       $("#id-modifica").val(res.id); //AGGIUNTA LETTURA ID DELL'INPUT
       $("#ragione-sociale-modifica").val(res.ragionesociale);
       $("#piva-modifica").val(res.partitaiva);
+      $("#piva-modifica").val();
       $("#indirizzo-modifica").val(res.indirizzo);
       $("#email-modifica").val(res.email);
       $("#numero-telefono-modifica").val(res.ntelefono);
@@ -204,6 +230,10 @@ $(document).ready(function () {
       email: $("#email-modifica").val(),
       ntelefono: $("#numero-telefono-modifica").val(), //MANCAVA IL .VAL()
     };
+    console.log(c.partitaiva);
+    console.log(c.email);
+    console.log(c.ntelefono);
+    console.log("================");
 
     // pi = $('#piva-modifica').val(),
     // em = $('#email-modifica').val(),
@@ -211,14 +241,111 @@ $(document).ready(function () {
 
     //MANCAVA IL .VAL()
 
-    modificaAzienda(c);
+    var pi1;
+    function checkPartitaIva1(pi1) {
+      pi1 = c.partitaiva;
+      if (/^[0-9]{11}$/.test(pi1)) {
+        return true;
+      }
+    }
 
-    $("#ragione-sociale-modifica").val("");
-    $("#piva-modifica").val("");
-    $("#indirizzo-modifica").val("");
-    $("#email-modifica").val("");
-    $("#numero-telefono-modifica").val("");
-    $("#modifica-azienda-modal").css("display", "none");
+    var em1;
+    function checkEmail1(em1) {
+      em1 = c.email;
+      if (/[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/.test(em1)) {
+        return true;
+      }
+    }
+
+    var nt1;
+    function checkNumeroTelefono1(nt1) {
+      nt1 = c.ntelefono;
+      if (/^[0-9]{6,10}$/.test(nt1)) {
+        return true;
+      }
+    }
+
+    if (
+      checkPartitaIva1(pi1) &&
+      checkEmail1(em1) &&
+      checkNumeroTelefono1(nt1)
+    ) {
+      modificaAzienda(c);
+
+      $("#ragione-sociale-modifica").val("");
+      $("#piva-modifica").val("");
+      $("#indirizzo-modifica").val("");
+      $("#email-modifica").val("");
+      $("#numero-telefono-modifica").val("");
+      $("#modifica-azienda-modal").css("display", "none");
+    } else if (
+      checkPartitaIva1() &&
+      !checkEmail1(em1) &&
+      !checkNumeroTelefono1(nt1)
+    ) {
+      $("#piva-modifica").css({ color: "green" });
+      $("#email-modifica").css({ color: "red" });
+      $("#numero-telefono-modifica").css({ color: "red" });
+    } else if (
+      checkPartitaIva1() &&
+      checkEmail1(em1) &&
+      !checkNumeroTelefono1(nt1)
+    ) {
+      $("#piva-modifica").css({ color: "green" });
+      $("#email-modifica").css({ color: "green" });
+      $("#numero-telefono-modifica").css({ color: "red" });
+    } else if (
+      checkPartitaIva1() &&
+      !checkEmail1(em1) &&
+      checkNumeroTelefono1(nt1)
+    ) {
+      $("#piva-modifica").css({ color: "green" });
+      $("#email-modifica").css({ color: "red" });
+      $("#numero-telefono-modifica").css({ color: "green" });
+    } else if (
+      !checkPartitaIva1() &&
+      checkEmail1(em1) &&
+      !checkNumeroTelefono1(nt1)
+    ) {
+      $("#piva-modifica").css({ color: "red" });
+      $("#email-modifica").css({ color: "green" });
+      $("#numero-telefono-modifica").css({ color: "red" });
+    } else if (
+      !checkPartitaIva1() &&
+      checkEmail1(em1) &&
+      checkNumeroTelefono1(nt1)
+    ) {
+      $("#piva-modifica").css({ color: "red" });
+      $("#email-modifica").css({ color: "green" });
+      $("#numero-telefono-modifica").css({ color: "green" });
+    } else if (
+      !checkPartitaIva1() &&
+      !checkEmail1(em1) &&
+      checkNumeroTelefono1(nt1)
+    ) {
+      $("#piva-modifica").css({ color: "red" });
+      $("#email-modifica").css({ color: "red" });
+      $("#numero-telefono-modifica").css({ color: "green" });
+    } else if (
+      checkPartitaIva1() &&
+      !checkEmail1(em1) &&
+      checkNumeroTelefono1(nt1)
+    ) {
+      $("#piva-modifica").css({ color: "green" });
+      $("#email-modifica").css({ color: "red" });
+      $("#numero-telefono-modifica").css({ color: "green" });
+    } else if (
+      !(checkPartitaIva1() && checkEmail1(em1) && checkNumeroTelefono1(nt1))
+    ) {
+      $("#piva-modifica").css({ color: "red" });
+      $("#email-modifica").css({ color: "red" });
+      $("#numero-telefono-modifica").css({ color: "red" });
+    }
+
+    console.log(c.partitaiva);
+    console.log(c.email);
+    console.log(c.ntelefono);
+    console.log("================");
   });
 
   //$('#modifica-azienda').click(function(){
@@ -285,4 +412,103 @@ $(document).ready(function () {
   });
 
   //===================== modali FAQ =====================
+
+  // INDEX.html
+  $("#apri-modale-faq-index").click(function () {
+    $("#modale-faq-index").css("display", "block");
+    $(`
+        <p>FAQ INDEX...</p>
+      `).appendTo("#contenuto-modale-faq-index");
+  });
+
+  $("#chiudi-faq-index").click(function () {
+    $("#modale-faq-index").css("display", "none");
+    $("#contenuto-modale-faq-index").html("");
+  });
+
+  $(".chiudi-modale-faq-index").click(function () {
+    $("#modale-faq-index").css("display", "none");
+    $("#contenuto-modale-faq-index").html("");
+  });
+
+
+  // BENVENUTO.html
+  $("#apri-modale-faq-benvenuto").click(function () {
+    $("#modale-faq-benvenuto").css("display", "block");
+    $(`
+        <p>FAQ BENVENUTO...</p>
+      `).appendTo("#contenuto-modale-faq-benvenuto");
+  });
+
+  $("#chiudi-faq-benvenuto").click(function () {
+    $("#modale-faq-benvenuto").css("display", "none");
+    $("#contenuto-modale-faq-benvenuto").html("");
+  });
+
+  $(".chiudi-modale-faq-benvenuto").click(function () {
+    $("#modale-faq-benvenuto").css("display", "none");
+    $("#contenuto-modale-faq-benvenuto").html("");
+  });
+
+  //AZIENDE.html
+  $("#apri-modale-faq-aziende").click(function () {
+    $(`
+        <p>FAQ AZIENDE...</p>
+      `).appendTo("#contenuto-modale-faq-aziende");
+    $("#modale-faq-aziende").css("display", "block");
+  });
+
+  $("#chiudi-faq-aziende").click(function () {
+    $("#modale-faq-aziende").css("display", "none");
+    $("#contenuto-modale-faq-aziende").html("");
+  });
+
+  $(".chiudi-modale-faq-aziende").click(function () {
+    $("#modale-faq-aziende").css("display", "none");
+    $("#contenuto-modale-faq-aziende").html("");
+  });
+
+
+  //DIPENDENTI.html
+  $("#apri-modale-faq-dipendenti").click(function () {
+    $(`
+        <p>FAQ DIPENDENTI...</p>
+      `).appendTo("#contenuto-modale-faq-dipendenti");
+    $("#modale-faq-dipendenti").css("display", "block");
+  });
+
+  $("#chiudi-faq-dipendenti").click(function () {
+    $("#modale-faq-dipendenti").css("display", "none");
+    $("#contenuto-modale-faq-dipendenti").html("");
+  });
+
+  $(".chiudi-modale-faq-dipendenti").click(function () {
+    $("#modale-faq-dipendenti").css("display", "none");
+    $("#contenuto-modale-faq-dipendenti").html("");
+  });
+
+
+    //SEZIONE.html
+    $("#apri-modale-faq-sezione").click(function () {
+      $(`
+          <p>FAQ SEZIONE...</p>
+        `).appendTo("#contenuto-modale-faq-sezione");
+      $("#modale-faq-sezione").css("display", "block");
+    });
+  
+    $("#chiudi-faq-sezione").click(function () {
+      $("#modale-faq-sezione").css("display", "none");
+      $("#contenuto-modale-faq-sezione").html("");
+    });
+  
+    $(".chiudi-modale-faq-sezione").click(function () {
+      $("#modale-faq-sezione").css("display", "none");
+      $("#contenuto-modale-faq-sezione").html("");
+    });
+
+
+
+
+
+
 });

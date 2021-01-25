@@ -1,13 +1,12 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
 
-    // =========================== lettura dipendenti ====================================
-    function getListaDipendenti() {
-        
-        $.get("dipendenti", function(res) {
 
-            for(let i = 0; i < res.length; i++) {
-                $(`
+  // =========================== lettura dipendenti ====================================
+  function getListaDipendenti() {
+    $.get("dipendenti", function (res) {
+      for (let i = 0; i < res.length; i++) {
+        $(`
                 <tr class="item">
                         <td data-id='${res[i].id}'>${res[i].nome}</td>
                         <td>${res[i].cognome}</td>
@@ -25,23 +24,22 @@ $(document).ready(function() {
 
   // =========================== dettaglio dipendente ====================================
 
-    $('html').on('click', '.dettaglio-dipendente', function() {
-        //console.log("DETTAGLIO")
-        const id = +$(this).attr('data-id');
-        //console.log(id)
-        //window.location.href = 'dettagliodipendente.html'
-        //$('html').remove('html')
-        
-        //$('#body-dettaglio-dipendente').html('');
-        getDettaglioDipendente(id)
-    })
-    
-    function getDettaglioDipendente(id) {
-        
-        $('html').load('dettagliodipendente.html #dettaglio-dipendente')
+  $("html").on("click", ".dettaglio-dipendente", function () {
+    //console.log("DETTAGLIO")
+    const id = +$(this).attr("data-id");
+    //console.log(id)
+    //window.location.href = 'dettagliodipendente.html'
+    //$('html').remove('html')
 
-        $.get(`dipendenti/${id}`, function(res) {
-            $(` 
+    //$('#body-dettaglio-dipendente').html('');
+    getDettaglioDipendente(id);
+  });
+
+  function getDettaglioDipendente(id) {
+    $("html").load("dettagliodipendente.html #dettaglio-dipendente");
+
+    $.get(`dipendenti/${id}`, function (res) {
+      $(` 
             <h1>Dettaglio di ${res.nome} ${res.cognome}</h1>
             </span><a href="dipendenti.html"><button type="button" name="indietro">Indietro</button></a><span>
                 </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
@@ -55,8 +53,6 @@ $(document).ready(function() {
             `).appendTo("#dettaglio-dipendente");
     });
   }
-
-  
 
   // =========================== modale aggiungi dipendente ====================================
 
@@ -103,33 +99,23 @@ $(document).ready(function() {
     anno_assunzione_dipendente_x = data_assunzione_dipendente_x.getFullYear();
     yyy = anno_dipendente_x + 18;
 
-    // console.log(ddn_dipendente_x);
-    // console.log(anno_dipendente_x);
-    // console.log(zzz);
+    function XXX() {
+      if (zzz >= 18) {
+        return true;
+      }
+    }
 
-    // console.log(data_assunzione_dipendente_x);
-    // console.log(anno_assunzione_dipendente_x);
-    // console.log(yyy);
-
-    // console.log(annocorrente);
-
-
-    $("#ddn").keyup(function FAD() {
-        if (zzz >= 18 &&
-            anno_assunzione_dipendente_x <= annocorrente &&
-            anno_assunzione_dipendente_x >= yyy) {
-            $(".formattazione-ddn").css({ color: "green" });
-              ($("#help-ddn").text("Formattazione corretta").css({ color: "green" }));
-            $(".formattazione-data-assunzione").css({ color: "green" });
-              ($("#help-data-assunzione").text("Formattazione errata").css({ color: "green" }));
-            }
-    });
+    function YYY() {
+      if (
+        anno_assunzione_dipendente_x <= annocorrente &&
+        anno_assunzione_dipendente_x >= yyy
+      ) {
+        return true;
+      }
+    }
 
     // FORMATTAZIONE DATE AGGIUNGI DIPENDENTE
-    if (zzz >= 18 &&
-      anno_assunzione_dipendente_x <= annocorrente &&
-      anno_assunzione_dipendente_x >= yyy) {
-
+    if (XXX() && YYY()) {
       aggiungiDipendente(c);
 
       $("#nome").val("");
@@ -141,6 +127,23 @@ $(document).ready(function() {
       $("#azienda-dipendente").val("");
 
       $("#aggiungi-dipendente-modal").css("display", "none");
+    } else if (!XXX() && YYY()) {
+      alert("Inserire una data di nascita valida");
+      $(".formattazione-ddn").css({ color: "red" });
+      $(".formattazione-data-assunzione").css({ color: "green" });
+      $("#ddn").val("");
+    } else if (!YYY() && XXX()) {
+      alert("Inserire una data di assunzione valida");
+      $(".formattazione-data-assunzione").css({ color: "red" });
+      $(".formattazione-ddn").css({ color: "green" });
+      $("#data-assunzione").val("");
+    }
+    else if(!(XXX() && (anno_assunzione_dipendente_x > annocorrente))) {
+      alert('Inserire una data di nascita e una data di assunzione valida');
+      $(".formattazione-data-assunzione").css({ color: "red" });
+      $(".formattazione-ddn").css({ color: "red" });
+      $('#ddn').val('');
+      $('#data-assunzione').val('');
     }
   });
 
@@ -221,33 +224,16 @@ $(document).ready(function() {
       },
     };
 
-    // $.ajax({
-    //     type: 'PUT',
-    //     url: '/dipendenti',
-    //     data: JSON.stringify(c),
-    //     contentType: 'application/json',
-    //     dataType: 'json',
-    //     success: function(res) {
-    //     },
-    //     statusCode: {
-    //         200: function() {
-    //             $('#lista-dipendenti').html('');
-    //             getListaDipendenti();
-    //             $('#modifica-dipendente-modal').css('display', 'none');
-    //         }
-    //     }
-    // })
-
     // FORMATTAZIONE DATE MODIFICA DIPENDENTE
 
-  var ddn_dipendente_x2;
-  var anno_dipendente_x2;
-  var zzz2; // validità età dipendente
-  var data_assunzione_dipendente_x2;
-  var anno_assunzione_dipendente_x2;
-  var yyy2; // validità anno assunzione dipendente
+    var ddn_dipendente_x2;
+    var anno_dipendente_x2;
+    var zzz2; // validità età dipendente
+    var data_assunzione_dipendente_x2;
+    var anno_assunzione_dipendente_x2;
+    var yyy2; // validità anno assunzione dipendente
 
-  ddn_dipendente_x2 = new Date(c.ddn);
+    ddn_dipendente_x2 = new Date(c.ddn);
     anno_dipendente_x2 = ddn_dipendente_x2.getFullYear();
     zzz2 = annocorrente - anno_dipendente_x2;
 
@@ -255,17 +241,22 @@ $(document).ready(function() {
     anno_assunzione_dipendente_x2 = data_assunzione_dipendente_x2.getFullYear();
     yyy2 = anno_dipendente_x2 + 18;
 
+    function XXX2() {
+      if (zzz2 >= 18) {
+        return true;
+      }
+    }
 
-    if (
-      zzz2 >= 18 &&
-      anno_assunzione_dipendente_x2 <= annocorrente &&
-      anno_assunzione_dipendente_x2 >= yyy2
-    ) {
-        $(".formattazione-ddn").css({ color: "green" });
-        ($("#help-ddn").text("Formattazione corretta").css({ color: "green" }));
-      $(".formattazione-data-assunzione").css({ color: "green" });
-        ($("#help-data-assunzione").text("Formattazione errata").css({ color: "green" }));
+    function YYY2() {
+      if (
+        anno_assunzione_dipendente_x2 <= annocorrente &&
+        anno_assunzione_dipendente_x2 >= yyy2
+      ) {
+        return true;
+      }
+    }
 
+    if (XXX2() && YYY2()) {
       modificaDipendente(c);
 
       $("#nome-modifica").val("");
@@ -276,7 +267,24 @@ $(document).ready(function() {
       $("#ruolo-modifica").val("");
       $("#azienda-dipendente-modifica").val(""); //RIMASTO UN PEZZO DI CATEGORIA
       $("#modifica-dipendente-modal").css("display", "none");
-     }
+    } else if (!XXX2() && YYY2()) {
+      alert("Inserire una data di nascita valida");
+      $(".formattazione-ddn").css({ color: "red" });
+      $(".formattazione-data-assunzione").css({ color: "green" });
+      $("#ddn-modifica").val("");
+    } else if (!YYY2() && XXX2()) {
+      alert("Inserire una data di assunzione valida");
+      $(".formattazione-data-assunzione").css({ color: "red" });
+      $(".formattazione-ddn").css({ color: "green" });
+      $("#data-assunzione-modifica").val("");
+    }
+    else if(!(XXX2() && (anno_assunzione_dipendente_x2 > annocorrente))) {
+      alert('Inserire una data di nascita e una data di assunzione valida');
+      $(".formattazione-data-assunzione").css({ color: "red" });
+      $(".formattazione-ddn").css({ color: "red" });
+      $('#ddn-modifica').val('');
+      $('#data-assunzione-modifica').val('');
+    }
   });
 
   function modificaDipendente(c) {
@@ -302,101 +310,6 @@ $(document).ready(function() {
     $("#modifica-dipendente-modal").css("display", "none");
   });
 
-  //======================================================================
-
-  // =========================== modale modifica dipendente ====================================
-
-  //   function getAziendaDipendenteModifica() {
-  //     $.get("aziende", function (res) {
-  //       for (let i = 0; i < res.length; i++) {
-  //         $(
-  //           `<option class='azienda-modale-modifica' value='${res[i].id}'>${res[i].ragionesociale}</option>`
-  //         ).appendTo("#azienda-dipendente-modifica");
-  //       }
-  //     });
-  //   }
-
-  //   $("#lista-dipendenti").on("click", ".apri-modifica-dipendente", function () {
-  //     //SISTEMATO L'EVENTO
-  //     getAziendaDipendenteModifica();
-  //     const id = +$(this).attr("data-id");
-  //     $.get(`/dipendenti/${id}`, function (res) {
-  //       console.log(res);
-  //       $("#id-modifica").val(res.id); //AGGIUNTO ID
-  //       $("#nome-modifica").val(res.nome);
-  //       $("#cognome-modifica").val(res.cognome);
-  //       $("#ddn-modifica").val(res.ddn);
-  //       $("#stipendio-modifica").val(res.stipendio);
-  //       $("#data-assunzione-modifica").val(res.dataassunzione);
-  //       $("#ruolo-modifica").val(res.ruolo);
-
-  //       $("#azienda-dipendente-modifica").val(res.azienda); //AGGIUNTA SELEZIONE AZIENDA
-  //     });
-  //     $("#modifica-dipendente-modal").css("display", "block");
-  //   });
-
-  //   $("html").on("click", "#modifica-dipendente", function () {
-  //     //Era selezionata la classe quando era invece da utilizzare l'ID
-  //     const c = {
-  //       id: $("#id-modifica").val(),
-  //       nome: $("#nome-modifica").val(),
-  //       cognome: $("#cognome-modifica").val(),
-  //       ddn: $("#ddn-modifica").val(),
-  //       stipendio: $("#stipendio-modifica").val(),
-  //       dataassunzione: $("#data-assunzione-modifica").val(),
-  //       ruolo: $("#ruolo-modifica").val(),
-  //       azienda: {
-  //         id: $("#azienda-dipendente-modifica").val(), //CANCELLATA LA PARTE CHE NON SERVIVA E CAUSAVA ERRORE
-  //       },
-  //     };
-
-  //     // FORMATTAZIONE DATE MODIFICA DIPENDENTE
-  //     if (
-  //       zzz >= 18 &&
-  //       anno_assunzione_dipendente_x <= annocorrente &&
-  //       anno_assunzione_dipendente_x >= yyy
-  //     ) {
-  //       $(".formattazione-ddn").css({ color: "green" }),
-  //         ($("#help-ddn").text = "Formattazione corretta");
-  //       $(".formattazione-data-assunzione").css({ color: "green" }),
-  //         ($("#help-data-assunzione").text = "Formattazione corretta");
-
-  //       modificaDipendente(c);
-
-  //       $("#nome-modifica").val("");
-  //       $("#cognome-modifica").val("");
-  //       $("#ddn-modifica").val("");
-  //       $("#stipendio-modifica").val("");
-  //       $("#data-assunzione-modifica").val("");
-  //       $("#ruolo-modifica").val("");
-  //       $("#azienda-dipendente-modifica").val(""); //RIMASTO UN PEZZO DI CATEGORIA
-  //       $("#modifica-dipendente-modal").css("display", "none");
-  //     }
-  //   });
-
-  //   function modificaDipendente(c) {
-  //     $.ajax({
-  //       type: "PUT",
-  //       url: "/dipendenti",
-  //       data: JSON.stringify(c),
-  //       contentType: "application/json",
-  //       dataType: "json",
-  //       success: function (res) {},
-  //       statusCode: {
-  //         200: function () {
-  //           $("#lista-dipendenti").html("");
-  //           getListaDipendenti();
-  //           $("#modifica-dipendente-modal").css("display", "none");
-  //         },
-  //       },
-  //     });
-  //   }
-
-  //   $(".close-modifica-dipendente").click(function () {
-  //     //RICHIAMA UNA CLASSE
-  //     $("#modifica-dipendente-modal").css("display", "none");
-  //   });
-
   // =========================== ricerca dipendente ====================================
 
   $("#ricerca-dipendente").keyup(function () {
@@ -417,4 +330,6 @@ $(document).ready(function() {
       }
     }
   });
+
+
 });
