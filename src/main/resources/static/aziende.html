@@ -7,11 +7,14 @@
     <script src="main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 
     <title>Aziende</title>
 </head>
-<body>
+<body class="w3-container">
    <h1>Gestionale Aziende</h1>
    <br><br>
    
@@ -59,13 +62,13 @@
     
       <input type="text" id="ricerca-azienda" placeholder="Ricerca per ragione-sociale.." >
         </span><button type="button" name="goto-aggiungi" id="apri-aggiungi-azienda">Aggiungi</button><span>
-        </span><button type="button" name="indietro">Indietro</button><span>
+        </span><a href="sezione.html"><button type="button" name="indietro">Indietro</button></a><span>
         </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
-   
-   <table>
+   <br><br>
+   <table id="myTable">
        <thead>
            <tr>
-               <th>Ragione Sociale</th>
+               <th onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(1)')">Ragione Sociale</th>
                <th>P.Iva</th>
                <th>Indirizzo</th>
                <th>E-mail</th>
@@ -76,5 +79,7 @@
        <tbody id="lista-aziende">
        </tbody>
    </table>
+   <br>
+   <button>?</button>
 </body>
 </html>
