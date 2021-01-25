@@ -4,92 +4,92 @@ $(document).ready(function() {
 
     //==============================formattazione campi html==============
 
-    //====Partita iva====
+//     //====Partita iva====
 
-    $(".partitaiva").on("input", function() {
+//     $(".partitaiva").on("input", function() {
 
-        if($(this).val() == "")
-        $(".partitaiva").css({backgroundColor:""});
+//         if($(this).val() == "")
+//         $(".partitaiva").css({backgroundColor:""});
 
-        else {
-            if (checkPartitaIva($(this).val()))
-                $(".partitaiva").css({color:"green"}),
-                $("#help-partitaiva").textContent='formattazione corretta';
+//         else {
+//             if (checkPartitaIva($(this).val()))
+//                 $(".partitaiva").css({color:"green"}),
+//                 $("#help-partitaiva").textContent='formattazione corretta';
                
-            else 
-                $(".partitaiva").css({color:"red"});
-                $("#help-partitaiva").textContent='formattazione errata';
+//             else 
+//                 $(".partitaiva").css({color:"red"});
+//                 $("#help-partitaiva").textContent='formattazione errata';
                 
                 
-        }
-    })
+//         }
+//     })
 
-         var pi;
-    function checkPartitaIva(pi) {
-        pi = $('.partitaiva').val();
-        if (pi == '') return false;
-        else if (/^[0-9]{11}$/.test(pi)) return true;
-        else return false;
-      }
+//          var pi;
+//     function checkPartitaIva(pi) {
+//         pi = $('.partitaiva').val();
+//         if (pi == '') return false;
+//         else if (/^[0-9]{11}$/.test(pi)) return true;
+//         else return false;
+//       }
 
-//====email
+// //====email
 
-    $(".formattazione-email").on("input", function() {
+//     $(".formattazione-email").on("input", function() {
 
-        if($(this).val() == "")
-        $(".formattazione-email").css({backgroundColor:""});
+//         if($(this).val() == "")
+//         $(".formattazione-email").css({backgroundColor:""});
 
-        else {
-            if (checkEmail($(this).val()))
-                $(".formattazione-email").css({color:"green"});
+//         else {
+//             if (checkEmail($(this).val()))
+//                 $(".formattazione-email").css({color:"green"});
             
-            else 
-                $(".formattazione-email").css({color:"red"});
+//             else 
+//                 $(".formattazione-email").css({color:"red"});
                 
                 
-        }
-    })
+//         }
+//     })
 
-    var em;
-    function checkEmail(em) {
-        em = $('.formattazione-email').val();
-        if (em == '') return false;
-        else if (/[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/.test(em)) return true;
-        else return false;
-    }
-
-
-//=======numero telefono
+//     var em;
+//     function checkEmail(em) {
+//         em = $('.formattazione-email').val();
+//         if (em == '') return false;
+//         else if (/[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/.test(em)) return true;
+//         else return false;
+//     }
 
 
-    $(".formattazione-telefono").on("input", function() {
+// //=======numero telefono
 
-        if($(this).val() == "")
-        $(".formattazione-telefono").css({backgroundColor:""});
 
-        else {
-            if (checkNumeroTelefono($(this).val()))
-                $(".formattazione-telefono").css({color:"green"});
+//     $(".formattazione-telefono").on("input", function() {
+
+//         if($(this).val() == "")
+//         $(".formattazione-telefono").css({backgroundColor:""});
+
+//         else {
+//             if (checkNumeroTelefono($(this).val()))
+//                 $(".formattazione-telefono").css({color:"green"});
             
-            else 
-                $(".formattazione-telefono").css({color:"red"});
+//             else 
+//                 $(".formattazione-telefono").css({color:"red"});
                
                 
                 
-        }
-    })
+//         }
+//     })
 
-    var nt;
-    function checkNumeroTelefono(nt) {
-        nt = $('.formattazione-telefono').val();
-        if (nt == '') return false;
-        else if (/^[0-9]{6,10}$/.test(nt)) return true;
-        else return false;
-    }
+//     var nt;
+//     function checkNumeroTelefono(nt) {
+//         nt = $('.formattazione-telefono').val();
+//         if (nt == '') return false;
+//         else if (/^[0-9]{6,10}$/.test(nt)) return true;
+//         else return false;
+//     }
 
 
 
-//=====
+// //=====
 
 
 
@@ -147,11 +147,11 @@ $(document).ready(function() {
     //==========================aggiungi azienda==================================
 
 
+    // ho cambiato css con modal 
     //Controllare queste parte
     $('#apri-aggiungi-azienda').click( function() {
-        $('#aggiungi-azienda-modal').css('display', 'block');
+        $('#aggiungi-azienda-modal').modal('display', 'block');
      })
-
      $('#aggiungi-azienda').click(function(){
             
 
@@ -164,8 +164,8 @@ $(document).ready(function() {
                 ntelefono: $('#numero-telefono').val()}; //MANCAVA IL .VAL()
 
 
-                if(checkPartitaIva(pi) && checkEmail(em) && checkNumeroTelefono(nt)){
-                    console.log(pi);
+                // if(checkPartitaIva(pi) && checkEmail(em) && checkNumeroTelefono(nt)){
+                //     console.log(pi);
                     
 
                 
@@ -177,9 +177,9 @@ $(document).ready(function() {
                 $('#email').val('');
                 $('#numero-telefono').val('');
 
-                $('#aggiungi-azienda-modal').css('display', 'none');
+                $('#aggiungi-azienda-modal').modal('display', 'none');
 
-                }
+                // }
                 console.log("aggiunta non effettuata")
         })
     
@@ -207,13 +207,15 @@ $(document).ready(function() {
 
 
     $('.close-aggiungi-azienda').click(function(){
-		$('#aggiungi-azienda-modal').css('display', 'none');
+        $('#aggiungi-azienda-modal').css('display', 'none');
+        $('.modal').css('display', 'none');
     })
     
 
 //===========================================================
 
 
+// ho cambiato .css con .modal
 //=====================modifica azienda=====================
 
 $('#lista-aziende').on("click", ".apri-modifica-azienda", function() {
@@ -229,7 +231,7 @@ $('#lista-aziende').on("click", ".apri-modifica-azienda", function() {
         $('#numero-telefono-modifica').val(res.ntelefono);
         
     })
-    $('#modifica-azienda-modal').css('display', 'block');
+    $('#modifica-azienda-modal').modal('display', 'block');
 })
 
 // $('#modifica-azienda').click(function() {
@@ -284,7 +286,7 @@ $('html').on('click', '#modifica-azienda', function() {
                     $('#indirizzo-modifica').val('');
                     $('#email-modifica').val('');
                     $('#numero-telefono-modifica').val('');
-                    $('#modifica-azienda-modal').css('display', 'none');	
+                    $('#modifica-azienda-modal').modal('display', 'none');	
                  
 })
 

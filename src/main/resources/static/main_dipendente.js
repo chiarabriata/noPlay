@@ -70,9 +70,10 @@ $(document).ready(function() {
 
     // =========================== modale aggiungi dipendente ====================================
 
+    //ho modificato .css mettendo .modal per creare il modale al centro
 
     $('#apri-aggiungi-dipendente').click( function() {
-        $('#aggiungi-dipendente-modal').css('display', 'block');
+        $('#aggiungi-dipendente-modal').modal('display', 'block');
         $('#azienda-dipendente').html('');
         getAziendaDipendente();
      })
@@ -105,7 +106,7 @@ $(document).ready(function() {
                 $('#ruolo').val('');
                 $('#azienda-dipendente').val('');
 
-                $('#aggiungi-dipendente-modal').css('display', 'none');
+                $('#aggiungi-dipendente-modal').modal('display', 'none');
     })
 
     function getAziendaDipendente() {
@@ -139,6 +140,7 @@ $(document).ready(function() {
     
     $('.close-aggiungi-dipendente').click(function(){
         $('#aggiungi-dipendente-modal').css('display', 'none');
+        $('.modal').css('display', 'none');
     })
     
     
@@ -169,7 +171,7 @@ $(document).ready(function() {
         $('#azienda-dipendente-modifica').val(res.azienda);//AGGIUNTA SELEZIONE AZIENDA
         
     })
-    $('#modifica-dipendente-modal').css('display', 'block');
+    $('#modifica-dipendente-modal').modal('display', 'block');
 	})
 
 

@@ -14,24 +14,32 @@
 
     <title>Sezioni</title>
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     
+<!--header-->
     <div class="jumbotron text-center header" style="margin-bottom:0">
+        <img src="logotrasparente.png" class="img-fluid" alt="" style="width: 10%;">
+        <br><br>
         <h2>Benvenuto @Utente</h2>
         <p>Scegli la tua sezione</p> 
-      </div>
+    </div>
       
 <!--bottoni-->
-    <div class="container-fluid">
-    <div id='body-sezione' class="container2 text-center">
-        <a href="aziende.html"><button type="button" class="btn col-sm-6 btn2" name="Aziende" id="pulsante-sezione-aziende">Aziende</button></a>
-        
-        <a href="dipendenti.html"><button type="button" class="btn col-sm-6 btn2" name="Dipendenti">Dipendenti</button></a>
-    </div>
+    <div class="container" style="margin-top: 2%">
+        <div id='body-sezione' class="row ">
+            <div class="col-sm-6 text-center" >
+                <a href="aziende.html"><button type="button" class="btn btn2 font-weight-bold col-sm-6  w-100 btnazienda" name="Aziende" id="pulsante-sezione-aziende">Aziende</button></a>
+            </div>
+            <div class="col-sm-6 text-center">
+            <a href="dipendenti.html"><button type="button" class="btn btn2 font-weight-bold col-sm-6 w-100 btndipendenti" name="Dipendenti">Dipendenti</button></a>
+            </div>
+        </div>
     </div>
 
+<!--footer-->
     <div class="jumbotron text-right footer mt-auto" style="margin-bottom: 0">
-        <button type="button " class="btn">?</button>
+        <button type="button" class="btn">?</button>
        </div>
 </body>
 </html>
