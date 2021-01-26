@@ -3,32 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>noPlay Login</title>
+    
+    <script src="main.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>noPlay</title>
+
+ 
 </head>
-<body>
-    <div id='body-benvenuto'>
-    <h1>Benvenuto nel Gestionale noPlay</h1>
-    <br>
-    <h2>Homepage</h2>
-    <br>
-    <h3>Accedi al tuo account</h3>
-    <p>Inserisci i tuoi dati per accedere</p>
-    <br>
-    <form action="/login" method="POST">
-    <p>Username</p>
-    <input type="text" name="username" placeholder="Email o Nickname...">
-    <br>
-    <br>
-    <p>Password</p>
-    <input type="password" name="password" placeholder="Password...">
-    <button>ACCEDI</button></a>
-    </form>
+<body  class="d-flex flex-column min-vh-100" >
+  
+    <div id="body-benvenuto" class="jumbotron text-center header" style="margin-bottom:0">
+      <img src="logotrasparente.png" class="img-fluid" alt="" style="width: 10%;">  
+      <br><br>
+      <h2>Benvenuto nel Gestionale noPlay</h2>
+      </div>
 
-    <div id="faq-benvenuto">
-        <button type="button" class="btn">?</button>
+      <div class="container box-benvenuto align-center" >
+        <form action="sezione.html" method="POST" role="form">
+            <div class="form-group">
+              <h5 class="text-center">Accedi al tuo account</h5>
+                <label for="email">Username:</label>
+                <input type="text" class="form-control form-control-sm" id="email" placeholder="Inserire username" name="username">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control form-control-sm" id="pwd" placeholder="Inserire password" name="password">
+              </div>
+              <div class="btn1">
+              <a href="sezione.html"></a><button type="submit" id="pulsante-accedi-homepage" class="btn btn-warning text-black btn1" name="accedi">Accedi</button>
+            </div>
+            </form>
+      </div>
+      
+      </div>
+
+      <!--MODALE FAQ-->
+      <div class="modal" id="modale-faq-aziende" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style=" padding: 0%; height: auto;">
+        <div class="modal-dialog-centered modal-faq">
+            <div class="modal-content" style="border: 3px solid #222222;">
+    
+                <!-- Modal Header-->
+                <div class="modal-header" style="border-bottom: 0;">
+                    <h2 class="modal-title" id="exampleModalLabel2">Modulo FAQ</h2>
+                    
+                </div>
+    
+                <!--modal body-->
+                <div class="modal-body" style="background-color:  #f6f5f5 ;">
+                    <p>Faq----</p>
+                </div>
+                   
+                <!--Modal footer-->
+                <div class="modal-footer" style="border-top: 0;">
+                    <a href="#close-modal" rel="modal:close"><button class="btn-azienda close-modal close-faq" data-dismiss="modal">Chiudi</button></a>
+                </div>
+            </div>
+        </div>
+    </div>   
+        <!--footer-->
+    <div class="jumbotron footer mt-auto" style="margin-bottom:0">
+      <div class="row ">
+          <div class="col-sm text-left"> 
+              <p>noPlay.com | © 2021 Copyright | P.IVA 21457987854</p>
+          </div>
+          
+          <div class="col-sm text-right">
+          <button type="button" class="btn">?</button>
+          </div>
+      </div>
     </div>
-
-    </div>
-
+    
 </body>
 </html>
