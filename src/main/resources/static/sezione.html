@@ -29,17 +29,51 @@
     <div class="container" style="margin-top: 2%">
         <div id='body-sezione' class="row ">
             <div class="col-sm-6 text-center" >
-                <a href="aziende.html"><button type="button" class="btn btn2 font-weight-bold col-sm-6  w-100 btnazienda" name="Aziende" id="pulsante-sezione-aziende">Aziende</button></a>
+                <a href="aziende.html"><button type="button" class="btn btn2 font-weight-bold col-sm-6  w-100 btnazienda" name="Aziende" id="pulsante-sezione-aziende">
+                    <p id="scritta">Aziende</p></button></a>
             </div>
             <div class="col-sm-6 text-center">
-            <a href="dipendenti.html"><button type="button" class="btn btn2 font-weight-bold col-sm-6 w-100 btndipendenti" name="Dipendenti">Dipendenti</button></a>
+            <a href="dipendenti.html"><button type="button" class="btn btn2 font-weight-bold col-sm-6 w-100 btndipendenti" name="Dipendenti">
+                <p id="scritta">Dipendenti</p></button></a>
             </div>
         </div>
     </div>
 
-<!--footer-->
-    <div class="jumbotron text-right footer mt-auto" style="margin-bottom: 0">
-        <button type="button" class="btn">?</button>
-       </div>
+    <!--MODALE FAQ-->
+    <div class="modal" id="modale-faq-aziende" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style=" padding: 0%; height: auto;">
+        <div class="modal-dialog-centered modal-faq">
+            <div class="modal-content" style="border: 3px solid #222222;">
+    
+                <!-- Modal Header-->
+                <div class="modal-header" style="border-bottom: 0;">
+                    <h2 class="modal-title" id="exampleModalLabel2">Modulo FAQ</h2>
+                    
+                </div>
+    
+                <!--modal body-->
+                <div class="modal-body" style="background-color:  #f6f5f5 ;">
+                    <p>Faq----</p>
+                </div>
+                   
+                <!--Modal footer-->
+                <div class="modal-footer" style="border-top: 0;">
+                    <a href="#close-modal" rel="modal:close"><button class="btn-azienda close-modal close-faq" data-dismiss="modal">Chiudi</button></a>
+                </div>
+            </div>
+        </div>
+    </div>   
+        <!--footer-->
+        <div class="jumbotron footer mt-auto" style="margin-bottom:0">
+            <div class="row ">
+                <div class="col-sm text-left"> 
+                    <p>noPlay.com | © 2021 Copyright | P.IVA 21457987854</p>
+                </div>
+                
+                <div class="col-sm text-right">
+                <button type="button" class="btn">?</button>
+                </div>
+            </div>
+        </div>
+
 </body>
 </html>

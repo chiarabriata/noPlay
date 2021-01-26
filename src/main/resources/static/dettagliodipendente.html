@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="min-vh-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,19 +18,78 @@
 
 <body class="d-flex flex-column min-vh-100">
     
-    <div id="body-dettaglio-dipendente">
+    
 
-        <div class="jumbotron text-center header" style="margin-bottom:0">
-              <h2 id="titolo-dettaglio-dipendente"></h2>
-          </div>
-       
-        <div id="dettaglio-dipendente">  
-        </div>
-
-        <!--footer-->
-        <div class="jumbotron text-right footer mt-auto" style="margin-bottom:0">
-            <button type="button " class="btn ">?</button>
-           </div>
+    <div id="body-dettaglio-dipendente" class="jumbotron text-center header" style="margin-bottom:0">
+        <img src="logotrasparente.png" class="img-fluid" alt="" style="width: 10%;">  
+        <br>
+        <h2 id="titolo-dettaglio-dipendente"></h2>
     </div>
+    
+    <div class="container" style="color: black;">
+        <div class="card" style="margin-top: 2%; margin-bottom: 2%;">  
+            
+                <div class="card-header">
+                    <h3>Dettaglio Dipendente </h3>
+                </div>
+
+                <div class="card-body row" >
+                    <div class="col-sm text-left" id="dettaglio-dipendente">
+                    
+                    </div>
+
+                    <div class="col-sm text-right">
+                    <img src="foto-profilo-vuota.jpg" class="img-fluid" alt="" style="width: 40%;">
+                    </div>
+                </div>
+
+
+                <div class="card-footer text-right">
+                </span><a href="dipendenti.html"><button class="btn-azienda" type="button" name="indietro">Indietro</button></a><span>
+                </span><a href="benvenuto.html"><button class="btn-azienda" type="button" name="logout">Logout</button></a>  
+                </div>    
+                
+
+            
+        </div>
+    </div>    
+    
+    <!--MODALE FAQ-->
+    <div class="modal" id="modale-faq-aziende" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style=" padding: 0%; height: auto;">
+        <div class="modal-dialog-centered modal-faq">
+            <div class="modal-content" style="border: 3px solid #222222;">
+    
+                <!-- Modal Header-->
+                <div class="modal-header" style="border-bottom: 0;">
+                    <h2 class="modal-title" id="exampleModalLabel2">Modulo FAQ</h2>
+                    
+                </div>
+    
+                <!--modal body-->
+                <div class="modal-body" style="background-color:  #f6f5f5 ;">
+                    <p>Faq----</p>
+                </div>
+                   
+                <!--Modal footer-->
+                <div class="modal-footer" style="border-top: 0;">
+                    <a href="#close-modal" rel="modal:close"><button class="btn-azienda close-modal close-faq" data-dismiss="modal">Chiudi</button></a>
+                </div>
+            </div>
+        </div>
+    </div>   
+
+    <!--footer-->
+   <div class="jumbotron footer mt-auto" style="margin-bottom:0">
+        <div class="row ">
+            <div class="col-sm text-left"> 
+                <p>noPlay.com | © 2021 Copyright | P.IVA 21457987854</p>
+            </div>
+            
+            <div class="col-sm text-right">
+            <button type="button" class="btn">?</button>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>

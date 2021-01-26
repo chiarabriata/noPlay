@@ -12,7 +12,7 @@ $(document).ready(function() {
                         <td data-id='${res[i].id}'>${res[i].nome}</td>
                         <td>${res[i].cognome}</td>
                         <td>${res[i].ruolo}</td>
-                        <td><button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button></a><span> </span><button class='apri-modifica-dipendente' data-id='${res[i].id}'>Modifica</button></td>
+                        <td><button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button><span> </span><button class='apri-modifica-dipendente' data-id='${res[i].id}'>Modifica</button></td>
                         </tr>
                         `).appendTo("#lista-dipendenti");
 
@@ -39,21 +39,20 @@ $(document).ready(function() {
     
     function getDettaglioDipendente(id) {
         
-        $('html').load('dettagliodipendente.html #dettaglio-dipendente')
+        $('html').load('dettagliodipendente.html')
 
         $.get(`dipendenti/${id}`, function(res) {
             $(` 
-            <h1>Dettaglio di ${res.nome} ${res.cognome}</h1>
-            </span><a href="dipendenti.html"><button type="button" name="indietro">Indietro</button></a><span>
-                </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
             	<p>Nome: ${res.nome}</p>
                 <p>Cognome: ${res.cognome}</p>
                 <p>Data di nascita: ${res.ddn}</p>
                 <p>Stipendio: ${res.stipendio} Euro</p>
                 <p>Data di assunzione: ${res.dataassunzione}</p>
-                <p>Nome: ${res.ruolo}</p>
+                <p>Ruolo: ${res.ruolo}</p>
                 <p>Azienda: ${res.azienda.ragionesociale}</p>
             `).appendTo('#dettaglio-dipendente');
+            $(` 
+            	<p>Dettaglio: ${res.nome} ${res.cognome}</p>`).appendTo('#titolo-dettaglio-dipendente')
             //$(`<p>Dettaglio di ${res.nome} ${res.cognome}</p>`).appendTo('#titolo-dettaglio-dipendente');
         })
     }
