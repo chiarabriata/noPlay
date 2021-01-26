@@ -1,6 +1,19 @@
 $(document).ready(function () {
 
+  $('#fileImage').change(function() {
+    showImageThumbnail(this);
+  });
 
+  function showImageThumbnail(fileInput) {
+    file = fileInput.files[0];
+    reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#thumbnail').attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+  } 
 
   // =========================== lettura dipendenti ====================================
   function getListaDipendenti() {
@@ -50,33 +63,33 @@ $(document).ready(function () {
                 <p>Data di assunzione: ${res.dataassunzione}</p>
                 <p>Nome: ${res.ruolo}</p>
                 <p>Azienda: ${res.azienda.ragionesociale}</p>
-            `).appendTo('#dettaglio-dipendente');
-            $(`<p>Dettaglio di ${res.nome} ${res.cognome}</p>`).appendTo('#titolo-dettaglio-dipendente');
-        })
+            `).appendTo("#dettaglio-dipendente");
+      $(`<p>Dettaglio di ${res.nome} ${res.cognome}</p>`).appendTo(
+        "#titolo-dettaglio-dipendente"
+      );
+    });
+  }
+
+  //============================= ricerca ===========================================
+
+  $("#ricerca-dipendente").keyup(function () {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("ricerca-dipendente");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("lista-dipendenti");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
     }
-    
-
-    //============================= ricerca ===========================================
-
-    $("#ricerca-dipendente").keyup(function(){
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("ricerca-dipendente");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("lista-dipendenti");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-              txtValue = td.textContent || td.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-              } else {
-                tr[i].style.display = "none";
-              }
-            }
-          }      
-    })
-
+  });
 
   // =========================== modale aggiungi dipendente ====================================
 
@@ -113,6 +126,7 @@ $(document).ready(function () {
         partitaiva: "",
         email: "",
       },
+      immagine: $('#fileImage').val()
     };
 
     ddn_dipendente_x = new Date(c.ddn);
@@ -141,6 +155,7 @@ $(document).ready(function () {
     // FORMATTAZIONE DATE AGGIUNGI DIPENDENTE
     if (XXX() && YYY()) {
       aggiungiDipendente(c);
+      
 
       $("#nome").val("");
       $("#cognome").val("");
@@ -149,6 +164,7 @@ $(document).ready(function () {
       $("#data-assunzione").val("");
       $("#ruolo").val("");
       $("#azienda-dipendente").val("");
+      $("#fileImage").val("");
 
       $("#aggiungi-dipendente-modal").css("display", "none");
     } else if (!XXX() && YYY()) {
@@ -161,13 +177,12 @@ $(document).ready(function () {
       $(".formattazione-data-assunzione").css({ color: "red" });
       $(".formattazione-ddn").css({ color: "green" });
       $("#data-assunzione").val("");
-    }
-    else if(!(XXX() && (anno_assunzione_dipendente_x > annocorrente))) {
-      alert('Inserire una data di nascita e una data di assunzione valida');
+    } else if (!(XXX() && anno_assunzione_dipendente_x > annocorrente)) {
+      alert("Inserire una data di nascita e una data di assunzione valida");
       $(".formattazione-data-assunzione").css({ color: "red" });
       $(".formattazione-ddn").css({ color: "red" });
-      $('#ddn').val('');
-      $('#data-assunzione').val('');
+      $("#ddn").val("");
+      $("#data-assunzione").val("");
     }
   });
 
@@ -196,7 +211,47 @@ $(document).ready(function () {
         },
       },
     });
+
+    console.log(c.nome);
+    console.log(c.immagine);
   }
+
+    // function aggiungiFoto(c) {
+    //   $.ajax({
+    //     url: '/uploadFile',
+    //     type: 'POST',
+    //     data: JSON.stringify(c),
+    //     enctype: 'multipart/form-data',
+    //     //contentType: "application/json",
+    //     dataType: false,
+    //     processData: false,
+    //     success: function(response){
+    //         if(response != 0){
+    //             $("#img").attr("src",response); 
+    //             $(".preview img").show(); // Display image element
+    //         }else{
+    //             alert('file not uploaded');
+    //         }
+    //     },
+    // });
+    // }
+
+  // function aggiungiFoto(c) {
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/uploadFile",
+  //     data: JSON.stringify(c),
+  //     contentType: "application/json",
+  //     dataType: "json",
+  //     success: function (res) {},
+  //     statusCode: {
+  //       200: function () {
+  //         $("#lista-dipendente").html("");
+  //         getListaDipendenti();
+  //       },
+  //     },
+  //   });
+  // }
 
   $(".close-aggiungi-dipendente").click(function () {
     $("#aggiungi-dipendente-modal").css("display", "none");
@@ -301,13 +356,12 @@ $(document).ready(function () {
       $(".formattazione-data-assunzione").css({ color: "red" });
       $(".formattazione-ddn").css({ color: "green" });
       $("#data-assunzione-modifica").val("");
-    }
-    else if(!(XXX2() && (anno_assunzione_dipendente_x2 > annocorrente))) {
-      alert('Inserire una data di nascita e una data di assunzione valida');
+    } else if (!(XXX2() && anno_assunzione_dipendente_x2 > annocorrente)) {
+      alert("Inserire una data di nascita e una data di assunzione valida");
       $(".formattazione-data-assunzione").css({ color: "red" });
       $(".formattazione-ddn").css({ color: "red" });
-      $('#ddn-modifica').val('');
-      $('#data-assunzione-modifica').val('');
+      $("#ddn-modifica").val("");
+      $("#data-assunzione-modifica").val("");
     }
   });
 
@@ -354,6 +408,4 @@ $(document).ready(function () {
       }
     }
   });
-
-
 });

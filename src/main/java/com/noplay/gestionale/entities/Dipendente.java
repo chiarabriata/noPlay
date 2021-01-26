@@ -1,14 +1,13 @@
 package com.noplay.gestionale.entities;
 
-import javax.persistence.CascadeType;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Dipendente {
@@ -26,9 +25,11 @@ public class Dipendente {
 	@ManyToOne
 	@JoinColumn(name = "azienda_id", nullable = false)
 	private Azienda azienda;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "immagine_id", referencedColumnName = "id")
-	private DBFile dbFile;
+	//@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//@JoinColumn(name = "immagine_id", referencedColumnName = "id")
+	//private DBFile dbFile;
+	@Column(length = 225, nullable = true)
+	private String immagine;
 
 	
 	
@@ -36,7 +37,7 @@ public class Dipendente {
 	public Dipendente() {
 	}
 
-	public Dipendente(long id, String nome, String cognome, String ddn, double stipendio, String dataassunzione, String ruolo, Azienda azienda, DBFile dbFile) {
+	public Dipendente(long id, String nome, String cognome, String ddn, double stipendio, String dataassunzione, String ruolo, Azienda azienda, String immagine) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -45,7 +46,7 @@ public class Dipendente {
 		this.dataassunzione = dataassunzione;
 		this.ruolo = ruolo;
 		this.azienda = azienda;
-		this.dbFile = dbFile;
+		this.immagine = immagine;
 	}
 	
 
@@ -113,12 +114,29 @@ public class Dipendente {
 		this.azienda = azienda;
 	}
 
-	public DBFile getDbFile() {
-		return this.dbFile;
+
+	public String getImmagine() {
+		return this.immagine;
 	}
 
-	public void setDbFile(DBFile dbFile) {
-		this.dbFile = dbFile;
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "{" +
+			" id='" + getId() + "'" +
+			", nome='" + getNome() + "'" +
+			", cognome='" + getCognome() + "'" +
+			", ddn='" + getDdn() + "'" +
+			", stipendio='" + getStipendio() + "'" +
+			", dataassunzione='" + getDataassunzione() + "'" +
+			", ruolo='" + getRuolo() + "'" +
+			", azienda='" + getAzienda() + "'" +
+			", immagine='" + getImmagine() + "'" +
+			"}";
 	}
 	
 	

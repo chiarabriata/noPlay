@@ -37,9 +37,16 @@
         <p>Azienda</p>
         <select id="azienda-dipendente"></select> <br>
         <p>Immagine profilo</p>
-        <input id="immagine-dipendente" type="file" name="file" class="inserisci-immagine" required /><br>
-        <button id="aggiungi-dipendente">Aggiungi</button>
-        <button class="close-aggiungi-dipendente">Chiudi</button>     
+        
+            <input  type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg, image/jpg" /><br>
+            <p>
+                <img id="thumbnail" alt="Immagine Preview" />
+            </p>
+            <button id="caricare-foto" value="Upload">Carica foto</button>
+            <button id="aggiungi-dipendente" value="Upload">Aggiungi</button>
+            <button class="close-aggiungi-dipendente">Chiudi</button> 
+         
+        
     </div>
   </div>
 
