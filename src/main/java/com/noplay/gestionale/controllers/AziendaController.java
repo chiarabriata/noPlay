@@ -17,7 +17,7 @@ import com.noplay.gestionale.entities.Azienda;
 import com.noplay.gestionale.repositories.CrudAzienda;
 
 // CAMBIAMENTO!!!!
-@Controller
+@RestController
 @RequestMapping("/aziende")
 public class AziendaController {
 	
@@ -26,7 +26,7 @@ public class AziendaController {
 
 	
 	
-	@GetMapping("/aziende")
+	@GetMapping
 	public Iterable<Azienda> getListaAziende() {
 		return daoazienda.findAll();
 	}

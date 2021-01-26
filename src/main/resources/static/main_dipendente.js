@@ -12,7 +12,7 @@ $(document).ready(function() {
                         <td data-id='${res[i].id}'>${res[i].nome}</td>
                         <td>${res[i].cognome}</td>
                         <td>${res[i].ruolo}</td>
-                        <td><button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button></a><span> </span><button class='apri-modifica-dipendente' data-id='${res[i].id}'>Modifica</button></td>
+                        <td><button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button><span> </span><button class='apri-modifica-dipendente' data-id='${res[i].id}'>Modifica</button></td>
                         </tr>
                         `).appendTo("#lista-dipendenti");
       }
@@ -29,7 +29,7 @@ $(document).ready(function() {
         //console.log("DETTAGLIO")
         const id = +$(this).attr('data-id');
         //console.log(id)
-        //window.location.href = 'dettagliodipendente.html'
+        // window.location.href = 'dettagliodipendente.html'
         //$('html').remove('html')
         
         //$('#body-dettaglio-dipendente').html('');
@@ -37,33 +37,32 @@ $(document).ready(function() {
     })
     
     function getDettaglioDipendente(id) {
-        
-        $('html').load('dettagliodipendente.html #dettaglio-dipendente')
-
+ 
+        $('.w3-container').load('dettagliodipendente.html #body-dettaglio-dipendente')
         $.get(`dipendenti/${id}`, function(res) {
-            $(` 
-            <h1>Dettaglio di ${res.nome} ${res.cognome}</h1>
-            </span><a href="dipendenti.html"><button type="button" name="indietro">Indietro</button></a><span>
-                </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
-            	<p>Nome: ${res.nome}</p>
-                <p>Cognome: ${res.cognome}</p>
-                <p>Data di nascita: ${res.ddn}</p>
-                <p>Stipendio: ${res.stipendio} Euro</p>
-                <p>Data di assunzione: ${res.dataassunzione}</p>
-                <p>Nome: ${res.ruolo}</p>
-                <p>Azienda: ${res.azienda.ragionesociale}</p>
-            `).appendTo("#dettaglio-dipendente");
-    });
-  }
-
-  
-
-  // =========================== modale aggiungi dipendente ====================================
-
-  $("#apri-aggiungi-dipendente").click(function () {
-    $("#aggiungi-dipendente-modal").css("display", "block");
-    $("#azienda-dipendente").html("");
-    getAziendaDipendente();
+          $(` 
+          <h1>Dettaglio di ${res.nome} ${res.cognome}</h1>
+          </span><a href="dipendenti.html"><button type="button" name="indietro">Indietro</button></a><span>
+          </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
+          <p>Nome: ${res.nome}</p>
+          <p>Cognome: ${res.cognome}</p>
+          <p>Data di nascita: ${res.ddn}</p>
+          <p>Stipendio: ${res.stipendio} Euro</p>
+          <p>Data di assunzione: ${res.dataassunzione}</p>
+          <p>Nome: ${res.ruolo}</p>
+          <p>Azienda: ${res.azienda.ragionesociale}</p>
+          `).appendTo("#dettaglio-dipendente");
+        });
+      }
+      
+      
+      
+      // =========================== modale aggiungi dipendente ====================================
+      
+      $("#apri-aggiungi-dipendente").click(function () {
+        $("#aggiungi-dipendente-modal").css("display", "block");
+        $("#azienda-dipendente").html("");
+        getAziendaDipendente();
   });
 
   // CREAZIONE VARIABILI PER FORMATTAZIONE DIPENDENTI

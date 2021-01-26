@@ -25,13 +25,11 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        // TODO Auto-generated method stub
         return utente.getPassword();
     }
 
     @Override
     public String getUsername() {
-        // TODO ullAuto-generated method stub
         return utente.getUsername();
     }
 

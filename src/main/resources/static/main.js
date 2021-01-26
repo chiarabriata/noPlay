@@ -67,7 +67,7 @@ $(document).ready(function () {
 
   //===================================lettura aziende=========
 
-  $("#index").load("benvenuto.html #body-benvenuto");
+  $("#index").load("sezione.html #body-sezione");
   function getAziende() {
     $.get("aziende", function (res) {
       for (let i = 0; i < res.length; i++) {
