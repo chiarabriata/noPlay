@@ -5,69 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="jquery-3.5.1.min.js"></script>
     <script src="main.js"></script>
+
+    <!--aggiunta di bootstrap-->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 
     <title>Aziende</title>
 </head>
-<body class="w3-container">
-   <h1>Gestionale Aziende</h1>
-   <br><br>
-   
 
-    <div class="modal" id="aggiungi-azienda-modal">
-        <div class="modal-dettagli-aggiungi-azienda">
-            <span class="close close-aggiungi-azienda">&otimes;</span>
-            <h2>Aggiungi azienda</h2>
-            <p>Ragione sociale</p>
-            <input type="text" id="ragione-sociale" required>
-            <p>Partita Iva</p>
-            <input type="number" id="piva" class="partitaiva" maxlength="11" required> 
-            <p id="help-partitaiva"><i>Inserire 11 numeri</i></p>
-            <p>Indirizzo</p>
-            <input type="text" id="indirizzo" required>
-            <p>Email</p>
-            <input type="email" id="email" class="formattazione-email" required>
-            <p>Numero di telefono</p>
-            <input type="number" id="numero-telefono" class="formattazione-telefono" required>
-            <button id="aggiungi-azienda">Aggiungi</button>
-            <button class="close-aggiungi-azienda">Chiudi</button>
+
+<body class="w3-container d-flex flex-column min-vh-100" style="padding: 0%;">
+
+<div class="jumbotron text-center header" style="margin-bottom:0">
+    <img src="logotrasparente.png" class="img-fluid" alt="" style="width: 10%;">
+    <br>
+    <h1>Gestionale Aziende</h1>
+
+<div class="container-3">
+    
+    <!--ricerca-->
+    <div class="row">
+        <div class="col text-left">
+            <input type="text" id="ricerca-azienda" placeholder="Ricerca per ragione-sociale.." >
+        </div>    
+            <!--bottoni a destra-->
+        <div class="col text-right ">
+            </span><button class="btn-azienda" data-toggle="modal" data-target="aggiungi-azienda-modal" type="button" name="goto-aggiungi" id="apri-aggiungi-azienda">Aggiungi</button><span>
+                </span><a href="sezione.html"><button class="btn-azienda" type="button" name="indietro">Indietro</button></a><span>
+                </span><a href="benvenuto.html"><button class="btn-azienda" type="button" name="logout">Logout</button></a>
+           
+                <!--MODALE AGGIUNGI AZIENDA-->
+                <div class="modal" id="aggiungi-azienda-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: #f6f5f5; padding: 0%; height: auto;">
+                    <div class=" modal-dettagli-aggiungi-azienda modal-dialog-centered" role="document">
+                        <div class="modal-content" style="border: 3px solid #222222;">
+
+                            <div class="modal-header" style="border-bottom: 0;" >
+                                <h2 class="modal-title " id="exampleModalLabel">Aggiungi azienda</h2>
+                                <!-- <button type="button" class="close close-aggiungi-azienda" data-dismiss="modal"></button> -->
+                            </div>
+
+                            <div class="modal-body" style="background-color:  #f6f5f5;">
+                                <p>Ragione sociale</p>
+                                <input type="text" id="ragione-sociale" required>
+                                <p>Partita Iva</p>
+                                <input type="number" id="piva" class="partitaiva" maxlength="11" required> 
+                                <p>Indirizzo</p>
+                                <input type="text" id="indirizzo" required>
+                                <p>Email</p>
+                                <input type="email" id="email" class="formattazione-email" required>
+                                <p>Numero di telefono</p>
+                                <input type="number" id="numero-telefono" class="formattazione-telefono" required>
+                            </div>
+
+                            <!--modal footer-->
+                            <div class="modal-footer" style="border-top: 0;">
+                                <a href="#close-modal" rel="modal:close"><button class="btn-azienda close-modal close-aggiungi-azienda"  data-dismiss="modal" id="aggiungi-azienda">Aggiungi</button></a>
+                                <a href="#close-modal" rel="modal:close"><button class="btn-azienda close-modal close-aggiungi-azienda"  data-dismiss="modal">Chiudi</button></a>
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
-    <!--modal modifica azienda -->
-    <div class="modal" id="modifica-azienda-modal">
-        <div class="modal-dettagli-modifica-azienda">
-            <span class="close close-modifica-azienda">&otimes;</span>
-            <h2>Modifica azienda</h2>
-            <!-- Aggiunto campo hidden per l'id -->
-            <input type="hidden" id="id-modifica"> 
-            <p>Ragione sociale</p>
-            <input type="text" id="ragione-sociale-modifica">
-            <p>Partita Iva</p>
-            <input type="number" id="piva-modifica" maxlength="11" class="partitaiva">
-            <p>Indirizzo</p>
-            <input type="text" id="indirizzo-modifica">
-            <p>Email</p>
-            <input type="email" id="email-modifica" class="formattazione-email">
-            <p>Numero di telefono</p>
-            <input type="number" id="numero-telefono-modifica" class="formattazione-telefono">
-            <button id="modifica-azienda">Modifica</button>
-            <button class="close-modifica-azienda">Chiudi</button>
-        </div>
-    </div> 
-    
-      <input type="text" id="ricerca-azienda" placeholder="Ricerca per ragione-sociale.." >
-        </span><button type="button" name="goto-aggiungi" id="apri-aggiungi-azienda">Aggiungi</button><span>
-        </span><a href="sezione.html"><button type="button" name="indietro">Indietro</button></a><span>
-        </span><a href="benvenuto.html"><button type="button" name="logout">Logout</button></a>
-   <br><br>
-   <table id="myTable">
+</div>
+</div>
+   
+<div class="container-4" style="margin: 5%;">
+    <table id="myTable" class="table table-hover" style="padding: 5%;">
        <thead>
-           <tr>
+           <tr  class="testa">
                <th onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(1)')">Ragione Sociale</th>
                <th>P.Iva</th>
                <th>Indirizzo</th>
@@ -76,10 +96,88 @@
                <th>Azioni</th>
            </tr>
        </thead>
+        
        <tbody id="lista-aziende">
        </tbody>
+
    </table>
-   <br>
-   <button>?</button>
+</div>
+
+
+
+<!--modal modifica azienda -->
+<div class="modal" id="modifica-azienda-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style=" padding: 0%; height: auto;">
+    <div class="modal-dialog-centered modal-dettagli-modifica-azienda">
+        <div class="modal-content" style="border: 3px solid #222222;">
+
+            <!-- Modal Header-->
+            <div class="modal-header" style="border-bottom: 0;">
+                <h2 class="modal-title" id="exampleModalLabel2">Modifica azienda</h2>
+                <!-- <span class="close close-modifica-azienda"></span> -->
+                
+                <!-- Aggiunto campo hidden per l'id -->
+                <input type="hidden" id="id-modifica"> 
+            </div>
+
+            <!--modal body-->
+            <div class="modal-body" style="background-color:  #f6f5f5 ;">
+                <p>Ragione sociale</p>
+                <input type="text" id="ragione-sociale-modifica">
+                <p>Partita Iva</p>
+                <input type="number" id="piva-modifica" maxlength="11" class="partitaiva">
+                <p>Indirizzo</p>
+                <input type="text" id="indirizzo-modifica">
+                <p>Email</p>
+                <input type="email" id="email-modifica" class="formattazione-email">
+                <p>Numero di telefono</p>
+                <input type="number" id="numero-telefono-modifica" class="formattazione-telefono">
+            </div>
+               
+            <!--Modal footer-->
+            <div class="modal-footer" style="border-top: 0;">
+                <a href="#close-modal" rel="modal:close"><button class="btn-azienda close-modal close-modifica-azienda" data-dismiss="modal" id="modifica-azienda">Modifica</button>
+                <a href="#close-modal" rel="modal:close"><button class="btn-azienda close-modal close-modifica-azienda" data-dismiss="modal">Chiudi</button></a>
+            </div>
+        </div>
+    </div>
+</div> 
+
+        <!--MODALE FAQ-->
+            <div class="modal" id="modale-faq-aziende" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style=" padding: 0%; height: auto;">
+                <div class="modal-dialog-centered modal-faq">
+                    <div class="modal-content" style="border: 3px solid #222222;">
+            
+                        <!-- Modal Header-->
+                        <div class="modal-header" style="border-bottom: 0;">
+                            <h2 class="modal-title" id="exampleModalLabel2">Modulo FAQ</h2>
+                            
+                        </div>
+            
+                        <!--modal body-->
+                        <div class="modal-body" style="background-color:  #f6f5f5 ;">
+                            <p>Faq----</p>
+                        </div>
+                           
+                        <!--Modal footer-->
+                        <div class="modal-footer" style="border-top: 0;">
+                            <a href="#close-modal" rel="modal:close"><button class="btn-azienda close-modal close-faq" data-dismiss="modal">Chiudi</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+
+<!--footer-->
+   <div class="jumbotron footer mt-auto" style="margin-bottom:0">
+        <div class="row ">
+            <div class="col-sm text-left"> 
+                <p>noPlay.com | © 2021 Copyright | P.IVA 21457987854</p>
+            </div>
+            
+            <div class="col-sm text-right">
+                <button type="button" class="btn" data-toggle="modal" data-target="#modale-faq-aziende">?</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
