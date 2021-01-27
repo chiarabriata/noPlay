@@ -26,9 +26,10 @@ public class Dipendente {
 	@ManyToOne
 	@JoinColumn(name = "azienda_id", nullable = false)
 	private Azienda azienda;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "immagine_id", referencedColumnName = "id")
-	private DBFile dbFile;
+	private String percorso;
+	// @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	// @JoinColumn(name = "immagine_id")
+	// private DBFile dbFile;
 
 	
 	
@@ -36,7 +37,7 @@ public class Dipendente {
 	public Dipendente() {
 	}
 
-	public Dipendente(long id, String nome, String cognome, String ddn, double stipendio, String dataassunzione, String ruolo, Azienda azienda, DBFile dbFile) {
+	public Dipendente(long id, String nome, String cognome, String ddn, double stipendio, String dataassunzione, String ruolo, Azienda azienda, String percorso) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -45,9 +46,9 @@ public class Dipendente {
 		this.dataassunzione = dataassunzione;
 		this.ruolo = ruolo;
 		this.azienda = azienda;
-		this.dbFile = dbFile;
+		this.percorso = percorso;
 	}
-	
+
 
 	public long getId() {
 		return this.id;
@@ -113,13 +114,14 @@ public class Dipendente {
 		this.azienda = azienda;
 	}
 
-	public DBFile getDbFile() {
-		return this.dbFile;
+	public String getPercorso() {
+		return this.percorso;
 	}
 
-	public void setDbFile(DBFile dbFile) {
-		this.dbFile = dbFile;
+	public void setPercorso(String percorso) {
+		this.percorso = percorso;
 	}
+
 	
 	
 

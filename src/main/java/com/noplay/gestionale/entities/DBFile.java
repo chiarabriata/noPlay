@@ -1,44 +1,55 @@
-package com.noplay.gestionale.entities;
+// package com.noplay.gestionale.entities;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "immagini")
-public class DBFile {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-    private String percorso;
-    
+// import javax.persistence.*;
 
 
-    public DBFile() {
-    }
-
-    public DBFile(Long id, String percorso) {
-        this.id = id;
-        this.percorso = percorso;
-        
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPercorso() {
-        return this.percorso;
-    }
-
-    public void setPercorso(String percorso) {
-        this.percorso = percorso;
-    }
+// @Entity
+// @Table(name = "immagini")
+// public class DBFile {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id_dipendente;
+//     private String percorso;
+//     // @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "immagini")
+//     // // @JoinColumn(name = "id_dipendente", nullable = false)
+//     // private Dipendente dipendente;
 
     
 
+//     public DBFile(Long id_dipendente, String percorso, Dipendente dipendente) {
+//         this.id_dipendente = id_dipendente;
+//         this.percorso = percorso;
+//         this.dipendente = dipendente;
+//     }
     
-}
+
+//     public DBFile() {
+//     }
+
+    
+    
+//     public Long getId_dipendente() {
+//         return this.id_dipendente;
+//     }
+    
+//     public void setId_dipendente(Long id_dipendente) {
+//         this.id_dipendente = id_dipendente;
+//     }   
+    
+//     public String getPercorso() {
+//         return this.percorso;
+//     }
+    
+//     public void setPercorso(String percorso) {
+//         this.percorso = percorso;
+//     }
+    
+//     public Dipendente getDipendente() {
+//         return this.dipendente;
+//     }
+    
+//     public void setDipendente(Dipendente dipendente) {
+//         this.dipendente = dipendente;
+//     }
+    
+// }
