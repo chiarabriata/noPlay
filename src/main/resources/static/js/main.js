@@ -29,7 +29,7 @@ $(document).ready(function () {
     else return false;
   }
 
-  //====email
+  // ====email
 
   $(".formattazione-email").on("input", function () {
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
 
 
-  //=======numero telefono
+  // =======numero telefono
 
 
   $(".formattazione-telefono").on("input", function () {
@@ -135,13 +135,17 @@ $(document).ready(function () {
   }
 
   //==========================aggiungi azienda==================================
-
+  
   //Controllare queste parte
   $("#apri-aggiungi-azienda").click(function () {
-    $("#aggiungi-azienda-modal").modal("display", "block");
+    $("#aggiungi-azienda-modal").css("display", "block");
   });
-
+  
+  
   $("#aggiungi-azienda").click(function () {
+    // if (c.partitaiva.length == 11) {
+    //   $("#piva").css("color", "green")
+    // }
     const c = {
       ragionesociale: $("#ragione-sociale").val(),
       partitaiva: $("#piva").val(),
@@ -150,20 +154,56 @@ $(document).ready(function () {
       ntelefono: $("#numero-telefono").val(),
     }; //MANCAVA IL .VAL()
 
+    // console.log("Controllo esterno funzione: " + pi)
+  
+  // function checkPartitaIva(pi) {
+  //   // pi = $('#piva').val();
+  //   console.log("Controllo interno funzione: " + pi)
+  //   if (pi == '') {
+  //     return false;
+  //   } else if (/^[0-9]{11}$/.test(pi)) {
+  //     return true;
+  //   }
+  //   else {
+  //     return false;
+  //   } 
+  // }
+
+  // function checkEmail(em) {
+  //   // em = $('.formattazione-email').val();
+  //   if (em == '') return false;
+  //   else if (/[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/.test(em)) return true;
+  //   else return false;
+  // }
+
+  // function checkNumeroTelefono(nt) {
+  //   // nt = $('.formattazione-telefono').val();
+  //   if (nt == '') return false;
+  //   else if (/^[0-9]{6,10}$/.test(nt)) return true;
+  //   else return false;
+  // }
+
+    // console.log(pi);
+    // console.log(em);
+    // console.log(nt);
+
     if (checkPartitaIva(pi) && checkEmail(em) && checkNumeroTelefono(nt)) {
       console.log(pi);
 
       aggiungiAzienda(c);
-    }
-
+      
       $("#ragione-sociale").val("");
       $("#piva").val("");
       $("#indirizzo").val("");
       $("#email").val("");
       $("#numero-telefono").val("");
-
-      $("#aggiungi-azienda-modal").modal("display", "none");
-    console.log("aggiunta non effettuata");
+      
+      $("#aggiungi-azienda-modal").css("display", "none");
+      console.log("Sono entrato nell'if");
+    } else {
+      console.log("Non sono entrato nell'if");
+    }
+    console.log("Sono fuori dal ciclo");
   });
 
   function aggiungiAzienda(c) {
