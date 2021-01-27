@@ -375,16 +375,13 @@ $(document).ready(function () {
 
   // INDEX.html
   $("#apri-modale-faq-index").click(function () {
-    $("#modale-faq-index").css("display", "block");
-    $(`
-      <p>FAQ INDEX...</p>
-    `).appendTo("#contenuto-modale-faq-index");
+    $("#modale-faq-index").modal("display", "block");
   });
 
-  $("#chiudi-faq-index").click(function () {
-    $("#modale-faq-index").css("display", "none");
-    $("#contenuto-modale-faq-index").html("");
-  });
+  // $("#chiudi-faq-index").click(function () {
+  //   $("#modale-faq-index").css("display", "none");
+  //   $("#contenuto-modale-faq-index").html("");
+  // });
 
   $(".chiudi-modale-faq-index").click(function () {
     $("#modale-faq-index").css("display", "none");
@@ -392,37 +389,41 @@ $(document).ready(function () {
   });
 
 
-  // BENVENUTO.html
-  $("#apri-modale-faq-benvenuto").click(function () {
-    $("#modale-faq-benvenuto").css("display", "block");
-    $(`
-      <p>FAQ BENVENUTO...</p>
-    `).appendTo("#contenuto-modale-faq-benvenuto");
+  
+  
+  
+  
+  
+  // login.html
+  $("#apri-modale-faq-login").click(function () {
+    $("#modale-faq-login").modal("display", "block");
   });
 
-  $("#chiudi-faq-benvenuto").click(function () {
-    $("#modale-faq-benvenuto").css("display", "none");
-    $("#contenuto-modale-faq-benvenuto").html("");
+  // $("#chiudi-faq-login").click(function () {
+  //   $("#modale-faq-login").css("display", "none");
+  //   $("#contenuto-modale-faq-login").html("");
+  // });
+
+  $(".chiudi-modale-faq-login").click(function () {
+    $("#modale-faq-login").css("display", "none");
+    $("#contenuto-modale-faq-login").html("");
   });
 
-  $(".chiudi-modale-faq-benvenuto").click(function () {
-    $("#modale-faq-benvenuto").css("display", "none");
-    $("#contenuto-modale-faq-benvenuto").html("");
-  });
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
   //AZIENDE.html
   $("#apri-modale-faq-aziende").click(function () {
-    $(`
-      <p>FAQ AZIENDE...</p>
-    `).appendTo("#contenuto-modale-faq-aziende");
-    $("#modale-faq-aziende").css("display", "block");
+    $("#modale-faq-aziende").modal("display", "block");
   });
 
-  $("#chiudi-faq-aziende").click(function () {
-    $("#modale-faq-aziende").css("display", "none");
-    $("#contenuto-modale-faq-aziende").html("");
-  });
-
+  
   $(".chiudi-modale-faq-aziende").click(function () {
     $("#modale-faq-aziende").css("display", "none");
     $("#contenuto-modale-faq-aziende").html("");
@@ -431,15 +432,7 @@ $(document).ready(function () {
 
   //DIPENDENTI.html
   $("#apri-modale-faq-dipendenti").click(function () {
-    $(`
-      <p>FAQ DIPENDENTI...</p>
-    `).appendTo("#contenuto-modale-faq-dipendenti");
-    $("#modale-faq-dipendenti").css("display", "block");
-  });
-
-  $("#chiudi-faq-dipendenti").click(function () {
-    $("#modale-faq-dipendenti").css("display", "none");
-    $("#contenuto-modale-faq-dipendenti").html("");
+    $("#modale-faq-dipendenti").modal("display", "block");
   });
 
   $(".chiudi-modale-faq-dipendenti").click(function () {
@@ -449,21 +442,21 @@ $(document).ready(function () {
 
 
   //SEZIONE.html
-  $("#apri-modale-faq-sezione").click(function () {
-    $(`
-        <p>FAQ SEZIONE...</p>
-      `).appendTo("#contenuto-modale-faq-sezione");
-    $("#modale-faq-sezione").css("display", "block");
-  });
+  // $("#apri-modale-faq-sezione").click(function () {
+  //   $(`
+  //       <p>FAQ SEZIONE...</p>
+  //     `).appendTo("#contenuto-modale-faq-sezione");
+  //   $("#modale-faq-sezione").css("display", "block");
+  // });
 
-  $("#chiudi-faq-sezione").click(function () {
-    $("#modale-faq-sezione").css("display", "none");
-    $("#contenuto-modale-faq-sezione").html("");
-  });
+  // $("#chiudi-faq-sezione").click(function () {
+  //   $("#modale-faq-sezione").css("display", "none");
+  //   $("#contenuto-modale-faq-sezione").html("");
+  // });
 
-  $(".chiudi-modale-faq-sezione").click(function () {
-    $("#modale-faq-sezione").css("display", "none");
-    $("#contenuto-modale-faq-sezione").html("");
-  });
+  // $(".chiudi-modale-faq-sezione").click(function () {
+  //   $("#modale-faq-sezione").css("display", "none");
+  //   $("#contenuto-modale-faq-sezione").html("");
+  // });
 
 });

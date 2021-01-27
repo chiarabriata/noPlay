@@ -89,7 +89,7 @@ margin-right: 3%; */
 }
 
 .btnazienda{
-  background-image: url(aziende.jpg);
+  background-image: url(../images/aziende.jpg);
   background-size: 230%;
   background-repeat: no-repeat;
   background-position: center;
@@ -108,7 +108,7 @@ margin-right: 3%; */
 }
 
 .btndipendenti{
-  background-image: url(dipendenti.jpg);
+  background-image: url(../images/dipendenti.jpg);
   background-size: 200%;
   background-repeat: no-repeat;
   background-position: center;

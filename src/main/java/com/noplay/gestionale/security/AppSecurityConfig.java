@@ -3,6 +3,7 @@ package com.noplay.gestionale.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,21 +36,21 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
-            .authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/login").permitAll()
-             //Adding this line solved it
-            .and()
-            // .anyRequest().fullyAuthenticated()
-            .authorizeRequests().antMatchers("login.html").permitAll()
+            .authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/login", "login.html", "aziende", "/dipendenti", "/aziende/**", "/dipendenti/**", "aziende.html", "dettagliodipendente.html", "dipendenti.html", "index.html", "logout.html").permitAll()
+            //Adding this line solved it
+            // .antMatchers("aziende", "/dipendenti", "/aziende/**", "/dipendenti/**", "aziende.html", "dettagliodipendente.html", "dipendenti.html", "index.html", "logout.html").hasAnyRole()
+            // .antMatchers(HttpMethod.GET, "aziende").hasAnyRole("")
             .anyRequest().authenticated()
             .and()
             .formLogin()
-            .loginPage("/login.html").permitAll()
-            .loginProcessingUrl("/login")
+            .loginPage("/login.html")
+            .loginProcessingUrl("/login").permitAll()
+            .defaultSuccessUrl("/index.html", true)
             .and()
             .logout().invalidateHttpSession(true)
             .clearAuthentication(true)
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .logoutSuccessUrl("/logout.html").permitAll();
+            .logoutSuccessUrl("/login.html").permitAll();
     }
 
     // @Override
