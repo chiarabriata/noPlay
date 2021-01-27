@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -34,6 +35,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
+            .authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/login").permitAll()
+             //Adding this line solved it
+            .and()
+            // .anyRequest().fullyAuthenticated()
             .authorizeRequests().antMatchers("login.html").permitAll()
             .anyRequest().authenticated()
             .and()
@@ -43,9 +48,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter
             .and()
             .logout().invalidateHttpSession(true)
             .clearAuthentication(true)
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout.html"))
-            .logoutSuccessUrl("/logout-success").permitAll();
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/logout.html").permitAll();
     }
+
+    // @Override
+    // public void configure(WebSecurity web) throws Exception {
+    // web.ignoring().antMatchers("/resources/**");
+// }
 
     // @Bean
     // @Override

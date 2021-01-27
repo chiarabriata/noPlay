@@ -92,7 +92,7 @@ $(document).ready(function () {
 
 
 
-  $("html").load("sezione.html");
+  // $("html").load("sezione.html");
   function getAziende() {
     $.get("aziende", function (res) {
       for (let i = 0; i < res.length; i++) {
@@ -134,81 +134,6 @@ $(document).ready(function () {
 
   }
 
-
-  //============================================================================
-  //==========================aggiungi azienda==================================
-
-
-  //Controllare queste parte
-  //   $('#apri-aggiungi-azienda').click( function() {
-  //       $('#aggiungi-azienda-modal').css('display', 'block');
-  //    })
-
-  //    $('#aggiungi-azienda').click(function(){
-
-
-
-
-  //           const c = { ragionesociale: $('#ragione-sociale').val(), 
-  //               partitaiva: $('#piva').val(),
-  //               indirizzo: $('#indirizzo').val(), 
-  //               email: $('#email').val(),
-  //               ntelefono: $('#numero-telefono').val()}; //MANCAVA IL .VAL()
-
-
-  //             if(checkPartitaIva(pi) && checkEmail(em) && checkNumeroTelefono(nt)) {
-
-  //               aggiungiAzienda(c);
-
-  //               $('#ragione-sociale').val('');
-  //               $('#piva').val('');
-  //               $('#indirizzo').val('');
-  //               $('#email').val('');
-  //               $('#numero-telefono').val('');
-
-  //               $('#aggiungi-azienda-modal').css('display', 'none');
-  //             }
-
-  //               console.log("aggiunta non effettuata")
-  //       })
-
-
-  //   function aggiungiAzienda(c) {
-  //       $.ajax({
-
-  //           type: 'POST',
-  //           url: '/aziende',
-  //           data: JSON.stringify(c),
-  // 		contentType: 'application/json',
-  // 		dataType: 'json',
-  // 		success: function(res) {
-  //           },
-  //           statusCode: {
-  //               200: function() {
-  //                   $('#lista-aziende').html('');
-  //                   getAziende();
-  //               }
-  //           }
-  //         })
-  //       };
-  // $("#lista-aziende").on("click", ".elimina-azienda", function () {
-  //   const id = $(this).attr("data-id");
-  //   eliminaAzienda(id, $(this).parent().parent());
-  // });
-
-  // function eliminaAzienda(id, rigaAzienda) {
-  //   //chiamata personalizzata. controllare la mappatura
-  //   $.ajax({
-  //     url: `aziende/${id}`,
-  //     type: "DELETE",
-  //     success: function () {
-  //       rigaAzienda.remove();
-  //     },
-  //   });
-  // }
-
-  //=======================================================================
-
   //==========================aggiungi azienda==================================
 
   //Controllare queste parte
@@ -229,6 +154,7 @@ $(document).ready(function () {
       console.log(pi);
 
       aggiungiAzienda(c);
+    }
 
       $("#ragione-sociale").val("");
       $("#piva").val("");
@@ -237,7 +163,6 @@ $(document).ready(function () {
       $("#numero-telefono").val("");
 
       $("#aggiungi-azienda-modal").modal("display", "none");
-    }
     console.log("aggiunta non effettuata");
   });
 
@@ -285,25 +210,6 @@ $(document).ready(function () {
     $("#modifica-azienda-modal").modal("display", "block");
   });
 
-  // $('#modifica-azienda').click(function() {
-  //     const c = { ragionesociale: $('#ragione-sociale-modifica').val(),
-  //                 partitaiva: $('#piva-modifica').val(),
-  //                 indirizzo: $('#indirizzo-modifica').val(),
-  //                 email: $('#email-modifica').val(),
-  //                 ntelefono: $('#numero-telefono-modifica').val() //MANCAVA IL .VAL()
-
-  //                  };
-  //                 console.log(c);
-  //                 modificaAzienda(c);
-
-  //         $('#ragione-sociale').val('');
-  // 		$('#piva').val('');
-  // 		$('#indirizzo').val('');
-  // 		$('#email').val('');
-  // 		$('#numero-telefono').val('');
-  // 		$('#modifica-azienda-modal').css('display', 'none');
-  // })
-
   $("html").on("click", "#modifica-azienda", function () {
     const c = {
       id: +$("#id-modifica").val(), //AGGIUNTO ID CON IL + DAVANTI
@@ -318,13 +224,7 @@ $(document).ready(function () {
     console.log(c.ntelefono);
     console.log("================");
 
-    // pi = $('#piva-modifica').val(),
-    // em = $('#email-modifica').val(),
-    // nt = $('#numero-telefono-modifica').val();
-
-    //MANCAVA IL .VAL()
-
-    var pi1;
+      var pi1;
     function checkPartitaIva1(pi1) {
       pi1 = c.partitaiva;
       if (/^[0-9]{11}$/.test(pi1)) {
@@ -431,10 +331,6 @@ $(document).ready(function () {
     console.log("================");
   });
 
-  //$('#modifica-azienda').click(function(){
-  // $('#modifica-azienda-modal').css('display', 'block');
-  //})
-
   function modificaAzienda(c) {
     $.ajax({
       type: "PUT",
@@ -455,25 +351,6 @@ $(document).ready(function () {
   $(".close-modifica-azienda").click(function () {
     $("#modifica-azienda-modal").css("display", "none");
   });
-
-  // function ricerca() {
-  //     var input, filter, table, tr, td, i, txtValue;
-  //     input = document.getElementById("ricerca-azienda");
-  //     filter = input.value.toUpperCase();
-  //     table = document.getElementById("lista-aziende");
-  //     tr = table.getElementsByTagName("tr");
-  //     for (i = 0; i < tr.length; i++) {
-  //         td = tr[i].getElementsByTagName("td")[0];
-  //         if (td) {
-  //           txtValue = td.textContent || td.innerText;
-  //           if (txtValue.toUpperCase().indexOf(filter) > -1) {
-  //             tr[i].style.display = "";
-  //           } else {
-  //             tr[i].style.display = "none";
-  //           }
-  //         }
-  //       }
-  //     }
 
   $("#ricerca-azienda").keyup(function () {
     var input, filter, table, tr, td, i, txtValue;
@@ -588,10 +465,5 @@ $(document).ready(function () {
     $("#modale-faq-sezione").css("display", "none");
     $("#contenuto-modale-faq-sezione").html("");
   });
-
-
-
-
-
 
 });
