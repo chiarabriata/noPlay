@@ -22,10 +22,11 @@ public class Dipendente {
 	@ManyToOne
 	@JoinColumn(name = "azienda_id", nullable = false)
 	private Azienda azienda;
+	private String percorso;
 	
 	
 	public Dipendente(long id, String nome, String cognome, String ddn, double stipendio, String dataassunzione,
-			String ruolo, Azienda azienda) {
+			String ruolo, Azienda azienda, String percorso) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -35,6 +36,7 @@ public class Dipendente {
 		this.dataassunzione = dataassunzione;
 		this.ruolo = ruolo;
 		this.azienda = azienda;
+		this.percorso = percorso;
 	}
 
 
@@ -122,7 +124,14 @@ public class Dipendente {
 		this.azienda = azienda;
 	}
 	
-	
+	public void setPercorso(String percorso) {
+		this.percorso = percorso;
+	}
+
+
+	public String getPercorso() {
+		return percorso;
+	}
 	
 	
 	
