@@ -24,9 +24,7 @@ public class DipendenteController {
 	//MODIFICA PER CAPIRE COME FUNZIONA GIT CON ECLIPSE
 	@Autowired
 	private CrudDipendente daodipendente;
-	
-	
-	
+
 	
 	@GetMapping
 	private Iterable<Dipendente> getListaDipendenti() {

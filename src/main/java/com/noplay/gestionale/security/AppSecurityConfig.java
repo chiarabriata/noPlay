@@ -36,16 +36,20 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
-            .authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/login", "login.html", "aziende", "/dipendenti", "/aziende/**", "/dipendenti/**", "aziende.html", "dettagliodipendente.html", "dipendenti.html", "index.html", "logout.html").permitAll()
+            // .authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/login", "login.html", "aziende", "/dipendenti", "/aziende/**", "/dipendenti/**", "aziende.html", "dettagliodipendente.html", "dipendenti.html", "index.html", "logout.html").permitAll()
+            .authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/login", "login.html").permitAll()
             //Adding this line solved it
-            // .antMatchers("aziende", "/dipendenti", "/aziende/**", "/dipendenti/**", "aziende.html", "dettagliodipendente.html", "dipendenti.html", "index.html", "logout.html").hasAnyRole()
-            // .antMatchers(HttpMethod.GET, "aziende").hasAnyRole("")
+            .antMatchers("aziende.html", "dettagliodipendente.html", "dipendenti.html", "index.html", "logout.html", "registrazione.html").hasAnyRole("ADMIN", "USER")
+            .antMatchers(HttpMethod.POST, "/aziende/**", "/dipendenti/**", "/aziende", "/dipendenti", "/utente", "/utente/**" ).hasAnyRole("ADMIN")
+            .antMatchers(HttpMethod.PUT, "/aziende/**", "/dipendenti/**", "/aziende", "/dipendenti" ).hasAnyRole("ADMIN")
+            .antMatchers(HttpMethod.GET, "/aziende/**", "/dipendenti/**", "/aziende", "/dipendenti").hasAnyRole("ADMIN", "USER")
             .anyRequest().authenticated()
             .and()
             .formLogin()
             .loginPage("/login.html")
             .loginProcessingUrl("/login").permitAll()
             .defaultSuccessUrl("/index.html", true)
+            .failureUrl("/failed.html")
             .and()
             .logout().invalidateHttpSession(true)
             .clearAuthentication(true)

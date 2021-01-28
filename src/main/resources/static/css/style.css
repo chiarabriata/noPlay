@@ -40,9 +40,8 @@ font-family: 'Poppins', sans-serif;
 }
 .box-benvenuto{
 border: 2% #070d59;
-width: 30%;
+width: 25%;
 margin: auto;
-margin-top: 1%;
 margin-bottom: 1%;
 background-color: #222222;
 padding: 3%;
@@ -68,24 +67,18 @@ width: 50%;
 margin: auto;
 margin-top: 5%;
 margin-bottom: 3%;
-
-/* padding-top: 10%;
-padding-bottom: 10%; */
 border-radius: 40px;
-/* border: 2px solid #070d59; */
 color: #f6f5f5;
 font-family: 'Poppins', sans-serif;
 }
 
 .btn2{
-/* background-color: #1f3c88; */
-/*commentati epr provare misure con bootstrap*/
+
 height: 400px;
 border-radius: 150px;
 color: #000000!important;
 font-family: 'Poppins', sans-serif;
-/* margin-left: 3%;
-margin-right: 3%; */
+
 }
 
 .btnazienda{
@@ -93,12 +86,9 @@ margin-right: 3%; */
   background-size: 230%;
   background-repeat: no-repeat;
   background-position: center;
-  /* opacity: 0.50; */
+ 
   font-size: xx-large;
 
-/*   
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black; */
 }
 
 
@@ -124,9 +114,9 @@ margin-right: 3%; */
   border-radius: 5px;
 }
 
-.testa{
+/* .testa{
  background-color: #1f3d88d2;
-}
+} */
 
 .apri-modifica-azienda{
   background-color: #ffba48;
@@ -149,24 +139,75 @@ margin-right: 3%; */
   border-radius: 5px;
 }
 
+.apri-aggiungi-foto{
+  background-color: #ffba48;
+  color: #222222;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+}
+
+.modal-1 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  text-align: left;
+}
+
 .modal-header{
-  
+  background-color: #222222;
   color: #f6f5f5;
   font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
 }
 
-
-.modal-content{
-  background-color: #222222;
+.modal-dettagli-aggiungi-azienda{
+  margin: auto;
+  width: auto;
 }
+
 .modal{
-  border: 10% solid #222222 ;
+  background-color: #222222;
 } 
+
+.modal-content-1{
+  background-color: #222222;
+  position: relative;
+  margin: auto;
+  margin-top: 5%;
+  padding: 0;
+  border-radius: 8px;
+  width: 30%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+
+}
 
 .modal-body{
   padding-top: 10%;
   padding-bottom: 10%;
   border-radius: 2%;
+  color: #222222;
+}
+
+.modal-footer{
+  background-color: #222222;
+  border-radius: 8px;
+}
+
+.modal-content{
+  border-radius: 8px!important;
+  border: 0!important;
+  background-color: #222222;
 }
 
 /*sono tutti i p dei modali */

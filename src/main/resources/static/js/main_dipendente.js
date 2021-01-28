@@ -1,20 +1,68 @@
 $(document).ready(function () {
 
+  var dataSet=[];
+  var dipendenti=[];
+
+  if(localStorage['userValidation'] != 'admin') {
+    $("#apri-aggiungi-dipendente").css('display', 'none')
+    $("#registrazione").css('display', 'none')
+    
+  }
+
+  $(".accesso").click(function(){
+    //console.log($(".username-login").val())
+    localStorage['userValidation'] = $(".username-login").val();
+    console.log(userValidation);
+  })
+
+  $(".logout").click(function(){
+    console.log("DISCONNESSO")
+    window.localStorage.clear()
+  })
+
 
 
   // =========================== lettura dipendenti ====================================
   function getListaDipendenti() {
     $.get("dipendenti", function (res) {
       for (let i = 0; i < res.length; i++) {
-        $(`
-                <tr class="item">
-                        <td data-id='${res[i].id}'>${res[i].nome}</td>
-                        <td>${res[i].cognome}</td>
-                        <td>${res[i].ruolo}</td>
-                        <td><button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button></a><span> </span><button class='apri-modifica-dipendente' data-id='${res[i].id}'>Modifica</button></td>
-                        </tr>
-                        `).appendTo("#lista-dipendenti");
+        dipendenti.push(res[i].nome)
+        dipendenti.push(res[i].cognome)
+        dipendenti.push(res[i].ruolo)
+        if(localStorage['userValidation'] != "admin") {
+          dipendenti.push(`<button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button></a><span>`)
+        }
+        dipendenti.push(`<button class='dettaglio-dipendente' data-id='${res[i].id}'>Dettaglio</button></a><span> </span><button class='apri-modifica-dipendente' data-id='${res[i].id}'>Modifica</button><span> </span><button class='apri-aggiungi-foto' data-id='${res[i].id}'>Carica Foto</button>`)
+        dataSet.push(dipendenti)
+        dipendenti=[];
       }
+      $('#myTable').DataTable( {
+        language: {
+          "infoEmpty": "Nessun risultato",
+          "paginate": {
+             "first": "Primo",
+             "last": "Ultimo",
+             "next": "Successivo",
+             "previous": "Precedente"
+          },
+          "info": "Visualizzata pagina _PAGE_ di _PAGES_ totali",
+          "lengthMenu": "Visualizza _MENU_ risultati",
+          "emptyTable": "Nessun dato disponibile",
+          "zeroRecords": "Nessun dato disponibile",
+          "infoFiltered": "(Filtrati da _MAX_ risultati totali)",
+          "search": "Cerca: "
+        },
+        destroy: true, 
+        searching: true,
+        data: dataSet,
+        columns: [
+            { title: "Nome" },
+            { title: "Cognome" },
+            { title: "Ruolo" },
+            { title: "Azioni" }
+          ]
+    } );
+    dataSet=[];
     });
   }
 
@@ -47,33 +95,12 @@ $(document).ready(function () {
                 <p>Data di assunzione: ${res.dataassunzione}</p>
                 <p>Ruolo: ${res.ruolo}</p>
                 <p>Azienda: ${res.azienda.ragionesociale}</p>
-            `).appendTo('#dettaglio-dipendente');
+                `).appendTo('#dettaglio-dipendente');
+                $(`<img src="./immagini/${res.percorso}" alt="Immagine non disponibile" class="img-fluid" alt="" style="width: 40%;">`).appendTo('.foto-dipendente')
             $(`<p>Dettaglio di ${res.nome} ${res.cognome}</p>`).appendTo('#titolo-dettaglio-dipendente');
         })
     }
     
-
-    //============================= ricerca ===========================================
-
-    $("#ricerca-dipendente").keyup(function(){
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("ricerca-dipendente");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("lista-dipendenti");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-              txtValue = td.textContent || td.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-              } else {
-                tr[i].style.display = "none";
-              }
-            }
-          }      
-    })
-
 
   // =========================== modale aggiungi dipendente ====================================
 
@@ -352,6 +379,60 @@ $(document).ready(function () {
       }
     }
   });
+
+  $(".registrazione").click(function () {
+
+    const c = {
+      username: $("#username").val(),
+      password: $("#password").val(),
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/utente",
+      data: JSON.stringify(c),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (res) {},
+      statusCode: {
+        200: function () {
+          console.log("CREATO UTENTE")
+          window.location.href = "http://localhost:8080";
+        },
+      },
+    });
+  })
+
+    //DIPENDENTI.html
+    $("#apri-modale-faq-dipendenti").click(function () {
+      $("#modale-faq-dipendenti").modal("display", "block");
+    });
+  
+    $(".chiudi-modale-faq-dipendenti").click(function () {
+      $("#modale-faq-dipendenti").css("display", "none");
+      $("#contenuto-modale-faq-dipendenti").html("");
+    });
+  
+    $("#lista-dipendenti").on("click", ".apri-aggiungi-foto", function () {
+      const id = +$(this).attr("data-id");
+      console.log(id);
+      $('#file').val('');
+      $("#id-dipendente-foto").val(id);
+      $("#aggiungi-foto-modal").modal("display", "block");
+    });
+  
+  
+  
+    $("html").on("click", "#aggiungi-foto", function () {
+      $("#aggiungi-foto-modal").modal("display", "none");
+    });
+  
+  
+  
+    $(".close-aggiungi-foto").click(function () {
+      $("#aggiungi-foto-modal").css("display", "none");
+    });
+
 
 
 });

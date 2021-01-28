@@ -1,6 +1,12 @@
 $(document).ready(function () {
+  
+  var dataSet=[];
+  var aziende=[];
+  // var userValidation = "";
 
-
+  if(localStorage['userValidation'] != 'admin') {
+    $("#apri-aggiungi-azienda").css('display', 'none')
+  }
   //====Partita iva====
 
   $(".partitaiva").on("input", function () {
@@ -29,7 +35,7 @@ $(document).ready(function () {
     else return false;
   }
 
-  //====email
+  // ====email
 
   $(".formattazione-email").on("input", function () {
 
@@ -59,7 +65,7 @@ $(document).ready(function () {
 
 
 
-  //=======numero telefono
+  // =======numero telefono
 
 
   $(".formattazione-telefono").on("input", function () {
@@ -90,21 +96,66 @@ $(document).ready(function () {
 
   //===================================lettura aziende=========
 
+  $(".accesso").click(function(){
+    //console.log($(".username-login").val())
+    localStorage['userValidation'] = $(".username-login").val();
+    console.log(userValidation);
 
+  })
 
+  $(".logout").click(function(){
+    console.log("DISCONNESSO")
+    window.localStorage.clear()
+  })
+  
   // $("html").load("sezione.html");
   function getAziende() {
+    // var userValidation = document.getElementsByClassName("username-login").valueOf();
+    console.log(localStorage['userValidation']);
     $.get("aziende", function (res) {
       for (let i = 0; i < res.length; i++) {
-        $(`<tr class="item">
-                      <td data-id='${res[i].id}'>${res[i].ragionesociale}</td>
-                      <td>${res[i].partitaiva}</td>
-                      <td>${res[i].indirizzo}</td>
-                      <td>${res[i].email}</td>
-                      <td>${res[i].ntelefono}</td>
-                      <td><button class='apri-modifica-azienda' data-id='${res[i].id}'>Modifica</button></td>
-                      </tr>`).appendTo("#lista-aziende");
+        aziende.push(res[i].ragionesociale)
+        aziende.push(res[i].partitaiva)
+        aziende.push(res[i].indirizzo)
+        aziende.push(res[i].email)
+        aziende.push(res[i].ntelefono)
+        if(localStorage['userValidation'] != "admin") {
+          aziende.push("<p></p>")
+        }
+        aziende.push(`<button class='apri-modifica-azienda' data-id='${res[i].id}'>Modifica</button>`)
+        dataSet.push(aziende)
+        aziende=[];
       }
+      $('#myTable').DataTable( {
+        language: {
+          "infoEmpty": "Nessun risultato",
+          "paginate": {
+             "first": "Primo",
+             "last": "Ultimo",
+             "next": "Successivo",
+             "previous": "Precedente"
+          },
+          "info": "Visualizzata pagina _PAGE_ di _PAGES_ totali",
+          "lengthMenu": "Visualizza _MENU_ risultati",
+          "emptyTable": "Nessun dato disponibile",
+          "zeroRecords": "Nessun dato disponibile",
+          "infoFiltered": "(Filtrati da _MAX_ risultati totali)",
+          "search": "Cerca: "
+        },
+        destroy: true, 
+        searching: true,
+        data: dataSet,
+        columns: [
+            { title: "Ragione Sociale" },
+            { title: "P.Iva" },
+            { title: "Indirizzo" },
+            { title: "E-mail" },
+            { title: "N.tel" },
+            { title: "Azioni" }
+          ]
+    } );
+    dataSet=[];
+
     });
   }
   getAziende();
@@ -135,13 +186,17 @@ $(document).ready(function () {
   }
 
   //==========================aggiungi azienda==================================
-
+  
   //Controllare queste parte
   $("#apri-aggiungi-azienda").click(function () {
-    $("#aggiungi-azienda-modal").modal("display", "block");
+    $("#aggiungi-azienda-modal").css("display", "block");
   });
-
+  
+  
   $("#aggiungi-azienda").click(function () {
+    // if (c.partitaiva.length == 11) {
+    //   $("#piva").css("color", "green")
+    // }
     const c = {
       ragionesociale: $("#ragione-sociale").val(),
       partitaiva: $("#piva").val(),
@@ -150,20 +205,56 @@ $(document).ready(function () {
       ntelefono: $("#numero-telefono").val(),
     }; //MANCAVA IL .VAL()
 
+    // console.log("Controllo esterno funzione: " + pi)
+  
+  // function checkPartitaIva(pi) {
+  //   // pi = $('#piva').val();
+  //   console.log("Controllo interno funzione: " + pi)
+  //   if (pi == '') {
+  //     return false;
+  //   } else if (/^[0-9]{11}$/.test(pi)) {
+  //     return true;
+  //   }
+  //   else {
+  //     return false;
+  //   } 
+  // }
+
+  // function checkEmail(em) {
+  //   // em = $('.formattazione-email').val();
+  //   if (em == '') return false;
+  //   else if (/[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/.test(em)) return true;
+  //   else return false;
+  // }
+
+  // function checkNumeroTelefono(nt) {
+  //   // nt = $('.formattazione-telefono').val();
+  //   if (nt == '') return false;
+  //   else if (/^[0-9]{6,10}$/.test(nt)) return true;
+  //   else return false;
+  // }
+
+    // console.log(pi);
+    // console.log(em);
+    // console.log(nt);
+
     if (checkPartitaIva(pi) && checkEmail(em) && checkNumeroTelefono(nt)) {
       console.log(pi);
 
       aggiungiAzienda(c);
-    }
-
+      
       $("#ragione-sociale").val("");
       $("#piva").val("");
       $("#indirizzo").val("");
       $("#email").val("");
       $("#numero-telefono").val("");
-
-      $("#aggiungi-azienda-modal").modal("display", "none");
-    console.log("aggiunta non effettuata");
+      
+      $("#aggiungi-azienda-modal").css("display", "none");
+      console.log("Sono entrato nell'if");
+    } else {
+      console.log("Non sono entrato nell'if");
+    }
+    console.log("Sono fuori dal ciclo");
   });
 
   function aggiungiAzienda(c) {
@@ -190,25 +281,38 @@ $(document).ready(function () {
 
   //===========================================================
 
-
-
-
-
-
-
   $("#lista-aziende").on("click", ".apri-modifica-azienda", function () {
     const id = +$(this).attr("data-id");
     $.get(`/aziende/${id}`, function (res) {
       $("#id-modifica").val(res.id); //AGGIUNTA LETTURA ID DELL'INPUT
       $("#ragione-sociale-modifica").val(res.ragionesociale);
       $("#piva-modifica").val(res.partitaiva);
-      $("#piva-modifica").val();
+      // $("#piva-modifica").val();
       $("#indirizzo-modifica").val(res.indirizzo);
       $("#email-modifica").val(res.email);
       $("#numero-telefono-modifica").val(res.ntelefono);
     });
-    $("#modifica-azienda-modal").modal("display", "block");
+    $("#modifica-azienda-modal").css("display", "block");
   });
+
+  // $('#modifica-azienda').click(function() {
+  //     const c = { ragionesociale: $('#ragione-sociale-modifica').val(),
+  //                 partitaiva: $('#piva-modifica').val(),
+  //                 indirizzo: $('#indirizzo-modifica').val(),
+  //                 email: $('#email-modifica').val(),
+  //                 ntelefono: $('#numero-telefono-modifica').val() //MANCAVA IL .VAL()
+
+  //                  };
+  //                 console.log(c);
+  //                 modificaAzienda(c);
+
+  //         $('#ragione-sociale').val('');
+  // 		$('#piva').val('');
+  // 		$('#indirizzo').val('');
+  // 		$('#email').val('');
+  // 		$('#numero-telefono').val('');
+  // 		$('#modifica-azienda-modal').css('display', 'none');
+  // })
 
   $("html").on("click", "#modifica-azienda", function () {
     const c = {
@@ -224,7 +328,13 @@ $(document).ready(function () {
     console.log(c.ntelefono);
     console.log("================");
 
-      var pi1;
+    // pi = $('#piva-modifica').val(),
+    // em = $('#email-modifica').val(),
+    // nt = $('#numero-telefono-modifica').val();
+
+    //MANCAVA IL .VAL()
+
+    var pi1;
     function checkPartitaIva1(pi1) {
       pi1 = c.partitaiva;
       if (/^[0-9]{11}$/.test(pi1)) {
@@ -331,6 +441,10 @@ $(document).ready(function () {
     console.log("================");
   });
 
+  //$('#modifica-azienda').click(function(){
+  // $('#modifica-azienda-modal').css('display', 'block');
+  //})
+
   function modificaAzienda(c) {
     $.ajax({
       type: "PUT",
@@ -338,7 +452,7 @@ $(document).ready(function () {
       data: JSON.stringify(c),
       contentType: "application/json",
       dataType: "json",
-      success: function (res) { },
+      success: function (res) {},
       statusCode: {
         200: function () {
           $("#lista-aziende").html("");
@@ -351,6 +465,12 @@ $(document).ready(function () {
   $(".close-modifica-azienda").click(function () {
     $("#modifica-azienda-modal").css("display", "none");
   });
+
+
+
+
+
+  
 
   $("#ricerca-azienda").keyup(function () {
     var input, filter, table, tr, td, i, txtValue;
